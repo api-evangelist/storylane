@@ -1,0 +1,38 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "aid": "https://apievangelist.com/vocab/aid",
+    "storylane": "https://www.storylane.io/",
+    "demo": "https://schema.org/CreativeWork",
+    "demoLink": "https://schema.org/URL",
+    "workspace": "https://schema.org/Organization",
+    "accessToken": "https://schema.org/accessCode",
+    "passcode": "https://schema.org/accessCode",
+    "expirationDate": "https://schema.org/expires",
+    "chapter": "https://schema.org/hasPart",
+    "step": "https://schema.org/step",
+    "demoGallery": "https://schema.org/CollectionPage",
+    "interactiveDemo": "https://schema.org/InteractiveContent",
+    "walkthrough": "https://schema.org/HowTo",
+    "embedCode": "https://schema.org/embedUrl",
+    "webhookEvent": "https://schema.org/Event",
+    "leadCapture": "https://schema.org/ContactPoint",
+    "crmIntegration": "https://schema.org/softwareHelp",
+    "analyticsEvent": "https://schema.org/AnalyticsAction"
+  },
+  "@type": "APIReference",
+  "name": "Storylane External API",
+  "description": "JSON-LD context for the Storylane External API, covering interactive demo management, shareable link generation, and demo personalization for Enterprise customers.",
+  "url": "https://api.storylane.io",
+  "documentation": "https://docs.storylane.io/integrations/integrations-and-data-flow/external-api",
+  "provider": {
+    "@type": "Organization",
+    "name": "Storylane",
+    "url": "https://www.storylane.io",
+    "sameAs": [
+      "https://github.com/storylane",
+      "https://www.linkedin.com/company/storylane-io",
+      "https://x.com/storylaneio"
+    ]
+  }
+}

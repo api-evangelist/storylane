@@ -1,0 +1,54 @@
+{
+  "aid": "storylane",
+  "url": "https://www.storylane.io/blog",
+  "rss": null,
+  "note": "No RSS/Atom feed detected at common paths; blog is rendered client-side without a machine-readable feed.",
+  "retrieved": "2026-06-13",
+  "posts": [
+    {
+      "title": "Mobile interactive demos: when they matter and how to build ones that convert",
+      "url": "https://www.storylane.io/blog/mobile-interactive-demos",
+      "date": "2026-06-10"
+    },
+    {
+      "title": "Top 7 Docket Alternatives in 2026 (Ranked)",
+      "url": "https://www.storylane.io/blog/docket-alternatives",
+      "date": "2026-06-08"
+    },
+    {
+      "title": "Qualified alternatives (Piper AI) in 2026: what GTM teams are evaluating after the Salesforce acquisition",
+      "url": "https://www.storylane.io/blog/qualified-alternatives",
+      "date": null
+    },
+    {
+      "title": "9 best AI SDR tools in 2026: Updated roundup for B2B GTM teams",
+      "url": "https://www.storylane.io/blog/best-ai-sdr-tools",
+      "date": "2026-06-01"
+    },
+    {
+      "title": "What is an AI agent for sales? A guide for B2B GTM teams",
+      "url": "https://www.storylane.io/blog/ai-agent-for-sales",
+      "date": null
+    },
+    {
+      "title": "What is a digital sales room? (And why yours needs more than PDFs)",
+      "url": "https://www.storylane.io/blog/what-is-a-digital-sales-room",
+      "date": "2026-05-25"
+    },
+    {
+      "title": "Solutions Engineer: What They Do, Skills They Need, and Tools That Scale SaaS Teams",
+      "url": "https://www.storylane.io/blog/solutions-engineer",
+      "date": "2026-05-18"
+    },
+    {
+      "title": "Storylane vs Reprise: which demo automation platform fits your team?",
+      "url": "https://www.storylane.io/blog/storylane-vs-reprise",
+      "date": null
+    },
+    {
+      "title": "Storylane vs Guideflow: Which demo automation platform fits your team in 2026?",
+      "url": "https://www.storylane.io/blog/storylane-vs-guideflow",
+      "date": null
+    }
+  ]
+}
