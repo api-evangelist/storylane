@@ -1,0 +1,107 @@
+specificationVersion: "0.1"
+aid: storylane:rate-limits
+name: Storylane API Rate Limits
+description: >
+  Storylane does not publicly document specific numeric rate limits for its
+  External REST API. API access is gated to Enterprise plan customers only,
+  and rate limit details are communicated directly upon onboarding. The notes
+  below reflect what is known from public documentation and general platform
+  behaviour.
+url: https://docs.storylane.io/integrations/integrations-and-data-flow/external-api
+rateLimits:
+  - name: External API — General
+    description: >
+      The Storylane External API is available exclusively on the Enterprise
+      plan. Specific rate limit values (requests per minute or per day) are
+      not published in the public documentation. Enterprise customers should
+      contact support@storylane.io during onboarding to obtain the applicable
+      rate limit thresholds for their workspace.
+    scope: workspace
+    limitType: requests
+    limit: unspecified
+    window: unspecified
+    notes: >
+      Access tokens are issued per workspace and cannot be recovered if lost,
+      as they are not stored server-side. Each API request must include the
+      workspace_id and a Bearer access_token in the Authorization header.
+      Contact support@storylane.io for current rate limit details.
+
+  - name: Account Reveal — Starter Plan
+    description: >
+      The account reveal feature (company identification from demo visitor
+      traffic) is limited to 250 account reveals per month on the Starter plan.
+    scope: workspace
+    limitType: account-reveals
+    limit: 250
+    window: monthly
+    plan: Starter
+
+  - name: Account Reveal — Growth Plan
+    description: >
+      The account reveal feature is limited to 2,500 account reveals per month
+      on the Growth plan.
+    scope: workspace
+    limitType: account-reveals
+    limit: 2500
+    window: monthly
+    plan: Growth
+
+  - name: RepX Chat — Growth Plan Capacity
+    description: >
+      The RepX Chat Growth plan supports up to 10,000 monthly visitors for
+      AI-driven conversational sales agent interactions.
+    scope: workspace
+    limitType: monthly-visitors
+    limit: 10000
+    window: monthly
+    plan: RepX Chat Growth
+
+  - name: RepX Chat — Premium Plan Capacity
+    description: >
+      The RepX Chat Premium plan supports up to 40,000 monthly visitors for
+      AI video conversational agent interactions.
+    scope: workspace
+    limitType: monthly-visitors
+    limit: 40000
+    window: monthly
+    plan: RepX Chat Premium
+
+  - name: AI Video Avatar — Starter Plan
+    description: >
+      AI video avatar generation is limited to 20 minutes of rendering per
+      month on the Starter plan.
+    scope: workspace
+    limitType: video-avatar-minutes
+    limit: 20
+    window: monthly
+    plan: Starter
+
+  - name: AI Video Avatar — Growth Plan
+    description: >
+      AI video avatar generation is limited to 125 minutes of rendering per
+      month on the Growth plan.
+    scope: workspace
+    limitType: video-avatar-minutes
+    limit: 125
+    window: monthly
+    plan: Growth
+
+  - name: AI Video Avatar — Premium Plan
+    description: >
+      AI video avatar generation is limited to 250 minutes of rendering per
+      month on the Premium plan.
+    scope: workspace
+    limitType: video-avatar-minutes
+    limit: 250
+    window: monthly
+    plan: Premium
+
+  - name: AI Video Avatar — Enterprise Plan
+    description: >
+      Enterprise plan customers have unlimited AI video avatar usage with no
+      monthly rendering cap.
+    scope: workspace
+    limitType: video-avatar-minutes
+    limit: unlimited
+    window: monthly
+    plan: Enterprise

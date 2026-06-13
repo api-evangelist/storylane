@@ -1,0 +1,172 @@
+specificationVersion: "0.1"
+aid: storylane:plans
+name: Storylane Plans and Pricing
+description: >
+  Storylane offers tiered Demo Suite plans from a free tier through Enterprise,
+  along with add-on RepX Chat plans for AI-driven conversational sales agents.
+  API access is restricted to the Enterprise plan only.
+url: https://www.storylane.io/pricing
+plans:
+  - name: Free
+    description: >
+      Single-seat free plan for individuals to create and share one published
+      demo with unlimited views and basic analytics.
+    url: https://www.storylane.io/pricing
+    price: 0.00
+    currency: USD
+    billingCycle: monthly
+    seats: 1
+    rateLimit: N/A
+    features:
+      - 1 published demo
+      - Unlimited demo views
+      - AI Suite (Content Assistant, Voiceovers)
+      - Lead capture
+      - Video recordings
+      - Basic analytics
+      - Slack integration
+    apiAccess: false
+
+  - name: Starter
+    description: >
+      Single-seat plan for individuals or small teams needing unlimited
+      published demos, advanced analytics, and integrations with HubSpot
+      and Zapier.
+    url: https://www.storylane.io/pricing
+    price: 50.00
+    annualPrice: 40.00
+    currency: USD
+    billingCycle: monthly
+    seats: 1
+    additionalSeatPrice: 40.00
+    features:
+      - Unlimited published demos
+      - AI Suite Starter (20 min video avatar, translations)
+      - Demo chapters
+      - Account reveal (250/month)
+      - HubSpot and Zapier integration
+      - Custom branding
+      - Advanced analytics
+    apiAccess: false
+
+  - name: Growth
+    description: >
+      Five-seat plan for growing teams requiring HTML demo editing,
+      personalization tokens, A/B testing, multi-team support, and
+      a dedicated customer success manager.
+    url: https://www.storylane.io/pricing
+    price: 625.00
+    annualPrice: 500.00
+    currency: USD
+    billingCycle: monthly
+    seats: 5
+    additionalSeatPrice: 100.00
+    features:
+      - HTML demo editor
+      - AI Suite Growth (125 min video avatar)
+      - Personalization tokens
+      - Account reveal (2,500/month)
+      - A/B testing
+      - Multi-teams
+      - Dedicated CSM
+      - 10+ integrations
+      - Custom lead forms
+    apiAccess: false
+
+  - name: Premium
+    description: >
+      Ten-seat plan for larger teams requiring Salesforce integration,
+      SSO, whitelabel URLs, offline demos, and presenter demos with
+      Hubs and deal intelligence.
+    url: https://www.storylane.io/pricing
+    price: 1500.00
+    annualPrice: 1200.00
+    currency: USD
+    billingCycle: monthly
+    seats: 10
+    features:
+      - Salesforce integration
+      - SSO
+      - Whitelabel URLs
+      - Presenter demos
+      - Hubs and deal intelligence
+      - Offline demos
+      - AI Suite Premium (250 min video avatar)
+    apiAccess: false
+
+  - name: Enterprise
+    description: >
+      Custom-priced plan for large organizations needing enterprise-grade
+      security, unlimited AI video avatar usage, private demo links,
+      full External REST API access, professional services, sandbox demos,
+      and ongoing coaching.
+    url: https://www.storylane.io/pricing
+    price: custom
+    currency: USD
+    billingCycle: annual
+    seats: custom
+    features:
+      - External REST API access
+      - Private demo links
+      - Unlimited AI video avatar usage
+      - Enterprise-grade security
+      - Professional services
+      - Sandbox demos
+      - Ongoing coaching
+    apiAccess: true
+
+  - name: RepX Chat Growth
+    description: >
+      AI conversational sales agent plan supporting up to 10,000 monthly
+      visitors with AI voice and text conversations, CRM integration, and
+      meeting bookings. Includes the full Demo Suite.
+    url: https://www.storylane.io/pricing
+    price: 2000.00
+    currency: USD
+    billingCycle: monthly
+    capacity: 10000 monthly visitors
+    features:
+      - AI voice and text conversations
+      - Unlimited conversations
+      - Sales knowledge engine
+      - Discovery flows
+      - CRM integration
+      - Meeting bookings
+      - Dedicated CSM
+      - Includes Demo Suite
+    apiAccess: false
+
+  - name: RepX Chat Premium
+    description: >
+      AI video conversational agent plan supporting up to 40,000 monthly
+      visitors with AI video avatar capabilities and multiple RepX agents.
+      Includes the full Demo Suite.
+    url: https://www.storylane.io/pricing
+    price: 3000.00
+    currency: USD
+    billingCycle: monthly
+    capacity: 40000 monthly visitors
+    features:
+      - AI video conversations (video avatar)
+      - Unlimited sales knowledge engine
+      - Multiple RepX agents
+      - Dedicated account team with QBR
+      - Includes full Demo Suite
+    apiAccess: false
+
+  - name: RepX Chat Enterprise
+    description: >
+      Custom conversational intelligence plan for 40,000-plus monthly
+      visitors with custom SLA, dedicated account team, and implementation
+      and technical support.
+    url: https://www.storylane.io/pricing
+    price: custom
+    currency: USD
+    billingCycle: annual
+    capacity: 40000+ monthly visitors
+    features:
+      - Custom conversational intelligence
+      - Custom SLA
+      - Dedicated account team
+      - Implementation and technical support
+    apiAccess: false

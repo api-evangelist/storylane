@@ -1,0 +1,77 @@
+aid: storylane
+name: Storylane
+description: >
+  Storylane is an interactive demo platform that enables sales and marketing
+  teams to build and share self-serve product walkthroughs, embedded demos,
+  and demo galleries without engineering involvement. The platform offers
+  an External REST API for Enterprise customers to programmatically manage
+  published demos, generate secure shareable links with passcodes and
+  expiration dates, and personalize demo experiences via email parameters.
+  Storylane also provides webhooks, cross-frame events, and 30-plus native
+  integrations with CRM, marketing automation, and analytics tools to
+  connect demo engagement data with existing GTM workflows.
+type: Index
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+url: https://raw.githubusercontent.com/api-evangelist/storylane/refs/heads/main/apis.yml
+created: "2026-06-13"
+modified: "2026-06-13"
+specificationVersion: "0.19"
+tags:
+  - Interactive Demos
+  - Product Walkthroughs
+  - Sales Enablement
+  - Marketing
+  - Demo Analytics
+  - Demo Automation
+  - Buyer Hub
+  - Sales
+apis:
+  - aid: storylane:storylane-external-api
+    name: Storylane External API
+    description: >
+      The Storylane External API allows Enterprise plan customers to
+      programmatically list published demos, retrieve demo details including
+      chapters and steps, manage demo links, create new shareable links with
+      advanced security options such as passcodes and expiration dates, and
+      update existing link configurations. Authentication uses a Bearer token
+      paired with a workspace identifier, and a public Postman collection is
+      provided for testing endpoints.
+    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    humanURL: https://docs.storylane.io/integrations/integrations-and-data-flow/external-api
+    baseURL: https://api.storylane.io
+    tags:
+      - Demos
+      - Links
+      - Personalization
+      - Enterprise
+    properties:
+      - type: Documentation
+        url: https://docs.storylane.io/integrations/integrations-and-data-flow/external-api
+      - type: PostmanCollection
+        url: https://www.postman.com/storylane
+common:
+  - type: Website
+    url: https://www.storylane.io
+  - type: Documentation
+    url: https://docs.storylane.io
+  - type: Blog
+    url: https://www.storylane.io/blog
+  - type: Pricing
+    url: https://www.storylane.io/pricing
+  - type: StatusPage
+    url: https://status.storylane.io
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/storylane-io
+  - type: X
+    url: https://x.com/storylaneio
+  - type: GitHubOrg
+    url: https://github.com/storylane
+  - type: Plans
+    url: plans/storylane-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/storylane-rate-limits.yml
+  - type: FinOps
+    url: finops/storylane-finops.yml
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
