@@ -50,5 +50,17 @@
       "url": "https://www.storylane.io/blog/storylane-vs-guideflow",
       "date": null
     }
-  ]
+  ],
+  "repo": "storylane",
+  "feeds": [
+    {
+      "source": "https://docs.storylane.io",
+      "feed_url": "https://docs.storylane.io",
+      "title": "",
+      "saved": 0,
+      "method": "none"
+    }
+  ],
+  "post_count": 0,
+  "fetched": "2026-06-14T20:42:17Z"
 }
