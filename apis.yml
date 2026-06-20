@@ -11,7 +11,7 @@ description: >
   integrations with CRM, marketing automation, and analytics tools to
   connect demo engagement data with existing GTM workflows.
 type: Index
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 url: https://raw.githubusercontent.com/api-evangelist/storylane/refs/heads/main/apis.yml
 created: "2026-06-13"
 modified: "2026-06-13"
@@ -36,7 +36,7 @@ apis:
       update existing link configurations. Authentication uses a Bearer token
       paired with a workspace identifier, and a public Postman collection is
       provided for testing endpoints.
-    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://docs.storylane.io/integrations/integrations-and-data-flow/external-api
     baseURL: https://api.storylane.io
     tags:
