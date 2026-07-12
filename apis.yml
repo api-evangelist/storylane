@@ -50,6 +50,8 @@ apis:
       - type: PostmanCollection
         url: https://www.postman.com/storylane
 common:
+  - type: DomainSecurity
+    url: security/storylane-domain-security.yml
   - type: Website
     url: https://www.storylane.io
   - type: Documentation
