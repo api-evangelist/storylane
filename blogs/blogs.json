@@ -2,13 +2,14 @@
   "repo": "storylane",
   "feeds": [
     {
-      "source": "https://www.storylane.io/blog",
-      "feed_url": "",
-      "saved": 1,
-      "method": "agent-scrape"
+      "source": "https://docs.storylane.io",
+      "feed_url": "https://docs.storylane.io",
+      "title": "",
+      "saved": 0,
+      "method": "none"
     }
   ],
-  "post_count": 8,
-  "fetched": "2026-06-27T13:12:34Z",
-  "agent_pulled": "2026-06-27"
+  "post_count": 10,
+  "fetched": "2026-07-11T11:50:51Z",
+  "agent_pulled": "2026-07-04"
 }
