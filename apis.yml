@@ -9,7 +9,12 @@ description: >
   expiration dates, and personalize demo experiences via email parameters.
   Storylane also provides webhooks, cross-frame events, and 30-plus native
   integrations with CRM, marketing automation, and analytics tools to
-  connect demo engagement data with existing GTM workflows.
+  connect demo engagement data with existing GTM workflows. Its widest
+  programmatic surface is not REST but a first-party hosted Model Context
+  Protocol server at identity.storylane.io/mcp, secured with OAuth 2.0
+  dynamic client registration and PKCE, exposing 22 documented tools for
+  demo creation from media, AI personalization, publishing, hubs, voices,
+  analytics, leads and accounts to Claude, ChatGPT and other MCP clients.
 type: Index
 accessModel:
   pricing: freemium
@@ -26,7 +31,7 @@ accessModel:
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/storylane.png
 url: https://raw.githubusercontent.com/api-evangelist/storylane/refs/heads/main/apis.yml
 created: "2026-06-13"
-modified: "2026-06-13"
+modified: "2026-08-13"
 specificationVersion: "0.19"
 tags:
   - Interactive Demos
@@ -37,6 +42,12 @@ tags:
   - Demo Automation
   - Buyer Hub
   - Sales
+  - MCP
+  - Agent Tools
+  - Webhooks
+  - Embeds
+  - oEmbed
+  - Demo Automation Platform
 apis:
   - aid: storylane:storylane-external-api
     name: Storylane External API
@@ -59,9 +70,119 @@ apis:
     properties:
       - type: Documentation
         url: https://docs.storylane.io/integrations/integrations-and-data-flow/external-api
+      - type: APIReference
+        url: https://docs.storylane.io/integrations/integrations-and-data-flow/external-api
       - type: PostmanCollection
-        url: https://www.postman.com/storylane
+        url: https://www.postman.com/team-storylane/storylane-public/collection/2zkg7jc/storylane-connect
+      - type: Postman
+        url: https://www.postman.com/team-storylane/storylane-public/collection/2zkg7jc/storylane-connect
+      - type: Authentication
+        url: authentication/storylane-authentication.yml
+      - type: DataModel
+        url: data-model/storylane-data-model.yml
+      - type: Conventions
+        url: conventions/storylane-conventions.yml
+      - type: ErrorCatalog
+        url: errors/storylane-problem-types.yml
+      - type: RateLimits
+        url: rate-limits/storylane-rate-limits.yml
+
+  - aid: storylane:storylane-mcp
+    name: Storylane MCP Server
+    description: >
+      Storylane's first-party hosted Model Context Protocol server, the widest
+      programmatic surface the company operates. It exposes 22 documented tools
+      covering demo analytics, engaged accounts and captured leads; the demo
+      library across workspaces; demo creation from screenshots or screen
+      recordings; AI personalization of demo variants; publishing; Demo Hubs;
+      share links; and AI narration voices. Authentication is OAuth 2.0 with
+      RFC 8414 authorization server metadata, RFC 7591 dynamic client
+      registration and PKCE S256, so an MCP client can self-provision with no
+      manual step. Claude, ChatGPT and Microsoft Copilot are named as supported
+      clients. Seventeen of its tools have no publicly documented REST
+      equivalent.
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+    humanURL: https://docs.storylane.io/integrations/integrations-and-data-flow/mcp
+    baseURL: https://identity.storylane.io/mcp
+    tags:
+      - MCP
+      - Agent Tools
+      - Demos
+      - Analytics
+      - OAuth
+    properties:
+      - type: MCPServer
+        url: mcp/storylane-mcp.yml
+      - type: ToolCrosswalk
+        url: mcp/storylane-tool-crosswalk.yml
+      - type: Documentation
+        url: https://docs.storylane.io/integrations/integrations-and-data-flow/mcp
+      - type: OAuthScopes
+        url: scopes/storylane-scopes.yml
+      - type: Authentication
+        url: authentication/storylane-authentication.yml
+      - type: WellKnown
+        url: well-known/storylane-well-known.yml
+      - type: AgentSkill
+        url: skills/_index.yml
+
+  - aid: storylane:storylane-oembed-api
+    name: Storylane oEmbed API
+    description: >
+      A public, unauthenticated oEmbed 1.0 provider endpoint that resolves any
+      Storylane demo share URL into a rich embed response containing the demo
+      title, provider metadata, a preview thumbnail, and the ready-to-paste
+      embed HTML with its iframe and loader script. It is the only Storylane
+      API endpoint callable with no credential of any kind, and the only one
+      whose exact request path the company publishes. Documented as compatible
+      with iFramely and Embedly.
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+    humanURL: https://docs.storylane.io/sharing-demos/embed-on-website-or-product
+    baseURL: https://api.storylane.io
+    tags:
+      - oEmbed
+      - Embeds
+      - Public
+    properties:
+      - type: Documentation
+        url: https://docs.storylane.io/sharing-demos/embed-on-website-or-product
+      - type: Components
+        url: components/storylane-components.yml
+      - type: Conformance
+        url: conformance/storylane-conformance.yml
+
+  - aid: storylane:storylane-webhooks
+    name: Storylane Webhooks and Demo Events
+    description: >
+      Storylane's event surface, in two channels. Outbound HTTPS webhooks
+      deliver completed demo sessions to a customer endpoint, signed with a
+      base64 HMAC-SHA256 of the raw body in an x-storylane-signature header,
+      carrying completion, dwell time, intent level, location, UTM parameters,
+      captured lead identity and firmographic buyer reveal. In the browser, an
+      embedded demo iframe emits cross-frame postMessage analytics events
+      (demo_open, step_view, demo_finished, lead_identify, open_external_url)
+      to its host page, and accepts an inbound cookie-consent message that
+      gates tracking for GDPR. Available from the Starter plan.
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+    humanURL: https://docs.storylane.io/integrations/integrations-and-data-flow/webhooks
+    baseURL: https://api.storylane.io
+    tags:
+      - Webhooks
+      - Events
+      - Analytics
+      - Lead Capture
+    properties:
+      - type: Webhooks
+        url: asyncapi/storylane-webhooks.yml
+      - type: Documentation
+        url: https://docs.storylane.io/integrations/integrations-and-data-flow/webhooks
+      - type: DataModel
+        url: data-model/storylane-data-model.yml
+      - type: AgentSkill
+        url: skills/storylane-verify-webhook.md
 common:
+  - type: TrustCenter
+    url: security/storylane-trust-center.yml
   - type: DomainSecurity
     url: security/storylane-domain-security.yml
   - type: Website
@@ -86,6 +207,77 @@ common:
     url: rate-limits/storylane-rate-limits.yml
   - type: FinOps
     url: finops/storylane-finops.yml
+  - type: MCPServer
+    url: mcp/storylane-mcp.yml
+  - type: ToolCrosswalk
+    url: mcp/storylane-tool-crosswalk.yml
+  - type: AgentSkill
+    url: skills/_index.yml
+  - type: LLMsTxt
+    url: llms/storylane-llms.txt
+  - type: WellKnown
+    url: well-known/storylane-well-known.yml
+  - type: OAuthScopes
+    url: scopes/storylane-scopes.yml
+  - type: Authentication
+    url: authentication/storylane-authentication.yml
+  - type: Conformance
+    url: conformance/storylane-conformance.yml
+  - type: Compliance
+    url: security/storylane-trust-center.yml
+  - type: Conventions
+    url: conventions/storylane-conventions.yml
+  - type: DataModel
+    url: data-model/storylane-data-model.yml
+  - type: ErrorCatalog
+    url: errors/storylane-problem-types.yml
+  - type: Lifecycle
+    url: lifecycle/storylane-lifecycle.yml
+  - type: ChangeLog
+    url: changelog/storylane-changelog.yml
+  - type: Webhooks
+    url: asyncapi/storylane-webhooks.yml
+  - type: Components
+    url: components/storylane-components.yml
+  - type: Packages
+    url: packages/storylane-packages.yml
+  - type: APIReference
+    url: https://docs.storylane.io/integrations/integrations-and-data-flow/external-api
+  - type: GettingStarted
+    url: https://docs.storylane.io/welcome-to-storylane
+  - type: HelpCenter
+    url: https://docs.storylane.io
+  - type: Support
+    url: mailto:support@storylane.io
+  - type: ChangeLogURL
+    url: https://docs.storylane.io/changelog
+  - type: TermsOfService
+    url: https://www.storylane.io/terms-of-service
+  - type: PrivacyPolicy
+    url: https://www.storylane.io/privacy-policy
+  - type: SignUp
+    url: https://app.storylane.io/register
+  - type: Login
+    url: https://app.storylane.io/login
+  - type: Integrations
+    url: https://www.storylane.io/integrations
+  - type: TrustCenterURL
+    url: https://trust.storylane.io/
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
+x-enrichment:
+  date: '2026-08-13'
+  status: enriched
+  artifacts_added: 22
+  pass: local-v1
+x-coverage:
+  state: covered
+  reason: mcp-and-event-surface-captured
+  detail: >
+    Storylane publishes no OpenAPI on any host, but contract discovery found a
+    live first-party remote MCP server at https://identity.storylane.io/mcp with
+    RFC 8414 OAuth metadata, RFC 7591 dynamic client registration and 22
+    documented tools, plus a public oEmbed 1.0 endpoint, a signed webhook
+    surface, an llms.txt and a SOC 2 Type 2 trust center.
+  checked: '2026-08-13'
