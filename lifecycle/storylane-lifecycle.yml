@@ -1,0 +1,117 @@
+generated: '2026-08-13'
+method: probed
+source: >
+  Live probes of https://status.storylane.io/api/v2/status.json and
+  /api/v2/summary.json, plus https://docs.storylane.io/changelog and the
+  External API, MCP and embed documentation.
+description: >
+  Storylane's API lifecycle posture. It publishes a real, machine-readable status
+  page and a dated product changelog, and nothing else: no versioning scheme, no
+  deprecation policy, no sunset signaling, no public SLA. The one live example of
+  a deprecation-shaped event on the platform — the v1 embed loader still being
+  served alongside v2 with no notice — is the shape of the gap.
+versioning:
+  scheme: none
+  url_versioning: false
+  header_versioning: false
+  published_policy: false
+  note: >
+    No documented Storylane API URL carries a version segment. The oEmbed path is
+    /oembed/meta and the MCP path is /mcp. The only versioned artifacts are the
+    browser embed loaders at /js/v1/ and /js/v2/.
+deprecation:
+  policy_published: false
+  policy_url: null
+  sunset_header: false
+  deprecation_header: false
+  rfc8594: false
+  advance_notice_period: null
+  deprecated_operations: []
+  observed_deprecation_shaped_event:
+    what: js.storylane.io/js/v1/storylane.js
+    status: still served (HTTP 200, 2026-08-13)
+    successor: js.storylane.io/js/v2/storylane.js
+    evidence: >
+      www.storylane.io loads v2, but the live oEmbed response at
+      https://api.storylane.io/oembed/meta still emits a v1 script tag in its
+      html field. Two loader generations are in production simultaneously with no
+      published deprecation notice, migration guide or end-of-life date for v1.
+    note: >
+      Not recorded as a deprecation — Storylane has never called it one. Recorded
+      as the evidence that no deprecation process exists.
+status_page:
+  url: https://status.storylane.io
+  provider: Atlassian Statuspage
+  page_id: wrhtsclgzgg1
+  machine_readable: true
+  verified: probed
+  endpoints:
+    - url: https://status.storylane.io/api/v2/status.json
+      status: 200
+      description: Current overall indicator and description.
+    - url: https://status.storylane.io/api/v2/summary.json
+      status: 200
+      description: Components, their status, and active incidents.
+    - url: https://status.storylane.io/history.rss
+      status: 200
+      description: Incident history as RSS.
+  observed:
+    at: '2026-08-13T22:07Z'
+    indicator: none
+    description: All Systems Operational
+    page_updated_at: '2026-08-13T21:19:45.353Z'
+  components_observed:
+    - name: Demo Player
+      status: operational
+      created_at: '2024-10-30'
+  note: >
+    A real, subscribable, machine-readable status surface — the strongest
+    operational signal Storylane publishes. It covers the demo player and
+    application; no component is named for the External API or the MCP endpoint,
+    so an outage on either would not be independently visible here.
+sla:
+  published: false
+  note: >
+    No public uptime commitment. "Custom SLA" is listed as a RepX Chat Enterprise
+    plan feature and "Dedicated Support" as a Premium feature, so SLAs are
+    negotiated per contract rather than published.
+support:
+  channels:
+    - email: support@storylane.io
+      note: Also the issuing channel for External API credentials and SCIM enablement.
+    - email: privacy@storylane.io
+      note: GDPR and data-protection contact.
+  security_contact: none published
+  security_txt: false
+changelog:
+  url: https://docs.storylane.io/changelog
+  cadence: approximately twice monthly
+  latest_entry: '2026-07-28'
+  api_changes_recorded: false
+  detail: changelog/storylane-changelog.yml
+maturity:
+  external_rest_api:
+    stage: limited availability
+    evidence: >
+      Enterprise plan only; credentials issued manually by support; request paths
+      and parameters unpublished; no OpenAPI; no SDK.
+  mcp_server:
+    stage: generally available, actively expanding
+    evidence: >
+      Publicly documented with 22 tools, OAuth with dynamic client registration,
+      named support for Claude, ChatGPT and Microsoft Copilot, and listed as a
+      paid plan feature. Hub creation and editing are documented as "coming soon",
+      so the surface is explicitly still growing.
+  webhooks:
+    stage: generally available
+    evidence: Starter plan and above, with signed payloads and reference verification code.
+  embed_and_oembed:
+    stage: generally available
+    evidence: Anonymous, documented, and the primary distribution mechanism.
+gaps:
+  - No API versioning scheme of any kind.
+  - No deprecation or sunset policy, and no Sunset/Deprecation headers.
+  - No published SLA or uptime commitment.
+  - No status page component covering the External API or the MCP endpoint.
+  - No security contact or vulnerability disclosure channel (see security/storylane-vulnerability-disclosure.yml).
+  - The changelog records product changes only; contract changes are not announced anywhere.

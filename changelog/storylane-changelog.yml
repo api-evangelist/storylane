@@ -1,0 +1,125 @@
+generated: '2026-08-13'
+method: searched
+source: https://docs.storylane.io/changelog
+description: >
+  Storylane maintains a dated, public product changelog inside its GitBook
+  documentation, published on a roughly twice-monthly cadence with entries dated
+  back to at least October 2025. It is a PRODUCT changelog, not an API changelog:
+  entries describe application and editor features, and no entry in the recent
+  window records an API, webhook or MCP contract change, a breaking change or a
+  deprecation.
+url: https://docs.storylane.io/changelog
+scheme: date-based
+versioning_scheme: none
+version_numbers_published: false
+current_version: null
+current_version_note: >
+  Storylane publishes no API or product version number anywhere. The most recent
+  identifiable release marker is the changelog date.
+cadence: approximately twice monthly (mid-month and month-end)
+latest_entry: '2026-07-28'
+oldest_entry_indexed: '2025-10-27'
+entry_count_indexed: 19
+breaking_change_policy: none published
+deprecation_policy: none published
+machine_readable: false
+machine_readable_note: >
+  No RSS, Atom or JSON feed is published for the changelog. Each entry is
+  retrievable as markdown by appending .md to its URL, and every entry is listed
+  in https://docs.storylane.io/llms.txt — which is the closest thing to a
+  machine-readable index Storylane offers.
+entries:
+  - date: '2026-07-28'
+    url: https://docs.storylane.io/changelog/july-2026/july-28th-2026
+    breaking: false
+    api_affecting: false
+    highlights:
+      - Filter analytics by label across Analytics, Leads, Accounts and Sessions
+      - Chapter menu behavior and styling controls
+      - Logo token personalization for demos, hubs and intro/outro screens
+      - Offline hubs
+  - date: '2026-07-15'
+    url: https://docs.storylane.io/changelog/july-2026/july-15th-2026
+    breaking: false
+    api_affecting: false
+    highlights:
+      - AI HTML editing
+      - Media to Demo
+      - Workspace defaults
+      - Custom share page background
+      - Duplicate and personalize
+  - date: '2026-06-26'
+    url: https://docs.storylane.io/changelog/june-2026/june-26th-2026
+    breaking: false
+    api_affecting: false
+    highlights:
+      - Video to demo
+      - Viewer role (free seat)
+      - Filter analytics by link creator
+  - date: '2026-06-12'
+    url: https://docs.storylane.io/changelog/june-2026/june-12th-2026
+    breaking: false
+    api_affecting: false
+    highlights:
+      - Comments
+      - AI document export
+      - Voiceover panel
+      - Editor dark and light theme
+      - Bulk screen editing
+      - Presenter notes jump to any step
+      - Personalization tokens in CTAs
+      - Desktop app improvements
+  - date: '2026-05-26'
+    url: https://docs.storylane.io/changelog/may-2026/may-26-2026
+    breaking: false
+    api_affecting: false
+    highlights:
+      - Demo Suite updates
+      - RepX Chat updates
+  - date: '2026-05-12'
+    url: https://docs.storylane.io/changelog/may-2026/may-12-2026
+    breaking: false
+  - date: '2026-04-30'
+    url: https://docs.storylane.io/changelog/april-2026/april-30-2026
+    breaking: false
+  - date: '2026-04-14'
+    url: https://docs.storylane.io/changelog/april-2026/april-14-2026
+    breaking: false
+  - date: '2026-03-21'
+    url: https://docs.storylane.io/changelog/march-2026/march-21th-2026
+    breaking: false
+  - date: '2026-03-10'
+    url: https://docs.storylane.io/changelog/march-2026/march-10th-2026
+    breaking: false
+  - date: '2026-02-28'
+    url: https://docs.storylane.io/changelog/february-2026/february-28th-2026
+    breaking: false
+  - date: '2026-02-09'
+    url: https://docs.storylane.io/changelog/february-2026/february-9th-2026
+    breaking: false
+  - date: '2026-01-26'
+    url: https://docs.storylane.io/changelog/january-2026/january-26th-2026
+    breaking: false
+  - date: '2026-01-12'
+    url: https://docs.storylane.io/changelog/january-2026/january-12th-2026
+    breaking: false
+  - date: '2025-12-27'
+    url: https://docs.storylane.io/changelog/december-2025/december-27th-2025
+    breaking: false
+  - date: '2025-12-15'
+    url: https://docs.storylane.io/changelog/december-2025/december-15th-2025
+    breaking: false
+  - date: '2025-11-28'
+    url: https://docs.storylane.io/changelog/november-2025/november-28th-2025
+    breaking: false
+  - date: '2025-11-15'
+    url: https://docs.storylane.io/changelog/november-2025/november-15th-2025
+    breaking: false
+  - date: '2025-10-27'
+    url: https://docs.storylane.io/changelog/october-2025/october-27th-2025
+    breaking: false
+observation: >
+  Across the five most recent entries — a ten-week window — not one records a
+  change to the External API, the webhook payload, the embed loader or the MCP
+  tool surface. An integrator watching this changelog would receive no signal
+  about a contract change, because contract changes are not published here.

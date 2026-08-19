@@ -1,0 +1,187 @@
+generated: '2026-08-13'
+method: probed
+source: >
+  Live probes of https://identity.storylane.io/.well-known/oauth-authorization-server,
+  https://identity.storylane.io/mcp and https://api.storylane.io/oembed/meta, plus
+  the Storylane MCP, SSO, webhook and trust-center documentation.
+description: >
+  Industry and cross-cutting standards Storylane does and does not conform to.
+  Every "conforms: true" row below is backed either by a document Storylane
+  serves or by a response this pipeline observed on a live probe. Rows marked
+  false are honest absences, not penalties.
+standards:
+  - id: oauth2
+    name: OAuth 2.0 (RFC 6749)
+    conforms: true
+    evidence: >
+      Authorization code, client credentials and refresh token grants are declared
+      in the authorization server metadata served at
+      https://identity.storylane.io/.well-known/oauth-authorization-server (HTTP 200).
+      The MCP endpoint returns 401 with WWW-Authenticate: Bearer realm="Storylane MCP".
+    surface: mcp
+  - id: rfc8414
+    name: OAuth 2.0 Authorization Server Metadata (RFC 8414)
+    conforms: true
+    evidence: >
+      https://identity.storylane.io/.well-known/oauth-authorization-server returns
+      HTTP 200 application/json with issuer, authorization_endpoint, token_endpoint,
+      registration_endpoint, response_types_supported, grant_types_supported,
+      code_challenge_methods_supported and scopes_supported. The same document is
+      also served from https://api.storylane.io.
+    surface: mcp
+  - id: rfc7591
+    name: OAuth 2.0 Dynamic Client Registration (RFC 7591)
+    conforms: true
+    evidence: >
+      registration_endpoint https://identity.storylane.io/oauth/register is
+      advertised in the RFC 8414 metadata, which is what lets an MCP client
+      self-register without manual provisioning.
+    surface: mcp
+  - id: pkce
+    name: Proof Key for Code Exchange (RFC 7636)
+    conforms: true
+    evidence: >
+      code_challenge_methods_supported is ["S256"] in the authorization server
+      metadata. The weaker "plain" method is not offered.
+    surface: mcp
+  - id: mcp
+    name: Model Context Protocol
+    conforms: true
+    evidence: >
+      A first-party hosted MCP server is documented and live at
+      https://identity.storylane.io/mcp; a JSON-RPC tools/list POST returns a
+      protocol-correct 401 with an OAuth challenge rather than an HTML error.
+      22 tools are published by name and description.
+    surface: mcp
+  - id: oembed
+    name: oEmbed 1.0
+    conforms: true
+    evidence: >
+      GET https://api.storylane.io/oembed/meta?url=<demo-url> returns HTTP 200
+      application/json with the required oEmbed fields type ("rich"), version
+      ("1.0"), html, width and height, plus optional title, provider_name,
+      provider_url and thumbnail_url. Storylane also documents iFramely and
+      Embedly compatibility.
+    surface: embed
+  - id: saml2
+    name: SAML 2.0
+    conforms: true
+    evidence: >
+      Workspace SSO is brokered through WorkOS with 20-plus documented SAML
+      identity provider integrations (Okta, Azure AD, PingFederate, Keycloak,
+      Oracle, Salesforce and others).
+    surface: application
+  - id: scim
+    name: SCIM 2.0
+    conforms: true
+    evidence: >
+      "Storylane supports SCIM (System for Cross-domain Identity Management) for
+      automated user provisioning" — https://docs.storylane.io/trust-and-security/sso.
+      Must be enabled by support; no SCIM base URL is published.
+    surface: application
+    caveat: Not self-serve; no public SCIM endpoint documented.
+  - id: soc2
+    name: SOC 2 Type 2
+    conforms: true
+    evidence: >
+      "Storylane Inc - SOC 2 Type 2 - Final Report.pdf" and a "SOC 2 - 2026"
+      framework badge are listed on the Sprinto-hosted Trust Center at
+      https://trust.storylane.io/ (HTTP 200). Report access is gated behind an
+      NDA request.
+    surface: organization
+  - id: gdpr
+    name: GDPR
+    conforms: true
+    evidence: >
+      "Storylane is GDPR compliant and our DPA is available in the Storylane Trust
+      Center" — https://docs.storylane.io/trust-and-security/gdpr-compliance. An
+      "EU and UK Personal Data Processing Agreement" document and a subprocessor
+      list are published on the Trust Center. Storylane also ships a documented
+      postMessage consent handshake so embedded demos withhold tracking until a
+      host site's cookie banner grants consent.
+    surface: organization
+  - id: webhook_hmac
+    name: HMAC-SHA256 webhook signing
+    conforms: true
+    evidence: >
+      Every webhook carries an x-storylane-signature header, a base64-encoded
+      HMAC-SHA256 of the raw request body keyed on a per-workspace verification
+      secret, with reference verification code in three languages —
+      https://docs.storylane.io/integrations/integrations-and-data-flow/webhooks.
+    surface: webhooks
+    caveat: >
+      No timestamp is included in the signed material and no replay window is
+      documented, so the signature proves origin but not freshness.
+  - id: oidc
+    name: OpenID Connect Discovery
+    conforms: false
+    evidence: >
+      /.well-known/openid-configuration returns 404 on identity.storylane.io,
+      api.storylane.io, www.storylane.io and docs.storylane.io. OIDC is offered as
+      an inbound SSO option via WorkOS, but Storylane is not an OIDC provider.
+  - id: rfc9457
+    name: Problem Details for HTTP APIs (RFC 9457)
+    conforms: false
+    evidence: >
+      No application/problem+json response was observed. Errors observed on live
+      probes use the OAuth 2.0 error envelope {"error","error_description"} or
+      a Rails HTML 404 page.
+  - id: rfc9116
+    name: security.txt (RFC 9116)
+    conforms: false
+    evidence: >
+      /.well-known/security.txt returns 404 on storylane.io, www.storylane.io,
+      api.storylane.io, docs.storylane.io and identity.storylane.io.
+  - id: openapi
+    name: OpenAPI
+    conforms: false
+    evidence: >
+      No OpenAPI or Swagger document is served on any Storylane host. Probed
+      /openapi.json, /openapi.yaml, /swagger.json, /v1/openapi.json, /api-docs,
+      /docs and /redoc against api.storylane.io (all 404), plus docs and identity
+      hosts. The External API is documented by sample response bodies and a
+      client-side Postman collection only.
+  - id: asyncapi
+    name: AsyncAPI
+    conforms: false
+    evidence: >
+      Storylane has a real event surface (outbound webhooks and cross-frame
+      postMessage events) but publishes no AsyncAPI document. Captured instead as
+      a webhook catalog in asyncapi/storylane-webhooks.yml.
+  - id: a2a
+    name: A2A Agent Card
+    conforms: false
+    evidence: >
+      /.well-known/agent-card.json and /.well-known/agent.json return 404 on
+      identity, api, www and docs hosts. app.storylane.io answers 200 for both,
+      but with the SPA HTML shell, not an agent card.
+  - id: rfc8594
+    name: Sunset header / deprecation signaling (RFC 8594)
+    conforms: false
+    evidence: No Sunset or Deprecation header policy is documented or observed.
+  - id: idempotency
+    name: Idempotency keys
+    conforms: false
+    evidence: >
+      No idempotency key header is documented for the External API or the MCP
+      write tools. create_link and convert_*_to_demo are retryable-unsafe as far
+      as the public documentation goes.
+  - id: pagination
+    name: Documented pagination
+    conforms: false
+    evidence: >
+      The documented list responses ({demos:[...]}, {links:[...]}) carry no
+      cursor, page, total or next fields, and no pagination parameters are
+      published.
+summary:
+  conforms: 11
+  does_not_conform: 8
+  strongest: >
+    The OAuth/MCP stack. RFC 8414 metadata, RFC 7591 dynamic registration and
+    PKCE S256 together mean an agent client can self-provision against Storylane
+    with no human in the loop — a posture most providers with an MCP server do
+    not reach.
+  weakest: >
+    The REST contract. There is no OpenAPI, no published request paths, no
+    pagination, no idempotency and no error schema, and the API itself is gated
+    to Enterprise with support-issued credentials.

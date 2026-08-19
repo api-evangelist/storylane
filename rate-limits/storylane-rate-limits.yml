@@ -1,3 +1,10 @@
+generated: '2026-08-13'
+method: searched
+source: >
+  https://www.storylane.io/pricing and
+  https://docs.storylane.io/integrations/integrations-and-data-flow/external-api,
+  plus live header observation of https://api.storylane.io and
+  https://identity.storylane.io on 2026-08-13.
 specificationVersion: "0.1"
 aid: storylane:rate-limits
 name: Storylane API Rate Limits
@@ -66,6 +73,16 @@ rateLimits:
     window: monthly
     plan: RepX Chat Premium
 
+  - name: Account Reveal — Premium Plan
+    description: >
+      The account reveal feature is limited to 10,000 account reveals per month
+      on the Premium plan.
+    scope: workspace
+    limitType: account-reveals
+    limit: 10000
+    window: monthly
+    plan: Premium
+
   - name: AI Video Avatar — Starter Plan
     description: >
       AI video avatar generation is limited to 20 minutes of rendering per
@@ -105,3 +122,22 @@ rateLimits:
     limit: unlimited
     window: monthly
     plan: Enterprise
+
+request_rate_limits:
+  published: false
+  limit_count: 0
+  response_headers_observed: []
+  response_headers_documented: []
+  exhaustion_status: undocumented
+  retry_after: not observed
+  verified: probed
+  note: >
+    HONEST ZERO ON REQUEST LIMITS. Storylane publishes no numeric API request
+    limit for any surface, and no rate-limit signaling was observed on the wire.
+    Live responses from https://api.storylane.io/oembed/meta and
+    https://identity.storylane.io/mcp on 2026-08-13 carried no X-RateLimit-*, no
+    RateLimit-* and no Retry-After header. An agent or integrator therefore has
+    no runtime signal about how close it is to a limit - it can only fail.
+    Every limit enumerated above is a PRODUCT QUOTA (billing-shaped, per plan,
+    per month), not a request-rate limit.
+quota_limit_count: 10

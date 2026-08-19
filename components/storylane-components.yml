@@ -1,0 +1,144 @@
+generated: '2026-08-13'
+method: searched
+source: >
+  https://docs.storylane.io/sharing-demos/embed-on-website-or-product,
+  https://docs.storylane.io/integrations/integrations-and-data-flow/cross-frame-events,
+  and live probes of js.storylane.io and https://api.storylane.io/oembed/meta
+description: >
+  Storylane's client-side embed surface. This is the company's real distribution
+  mechanism and it is materially bigger than its REST API: a CDN-hosted loader
+  script plus an iframe contract that any website can drop in, an oEmbed provider
+  endpoint for platforms that resolve links, and a postMessage event bus for the
+  host page. Distinct from SDKs — there is no first-party server-side client
+  library in any package registry.
+families:
+  - id: demo-embed
+    name: Storylane demo embed
+    kind: script + iframe
+    description: >
+      The primary embed. A loader script plus an .sl-embed wrapper containing an
+      .sl-demo iframe pointed at the demo URL. Storylane generates the snippet in
+      the app under Share > Embed.
+    loaders:
+      - name: storylane.js (v2)
+        url: https://js.storylane.io/js/v2/storylane.js
+        registry: cdn
+        version: null
+        published: null
+        http_status: 200
+        size_bytes: 17012
+        note: >
+          Current loader referenced by www.storylane.io itself. The URL pins a
+          major line (/js/v2/) but not a release, so it floats to whatever
+          Storylane ships. A consumer cannot tell which build they are running,
+          and neither can this pipeline — hence version: null.
+      - name: storylane.js (v1)
+        url: https://js.storylane.io/js/v1/storylane.js
+        registry: cdn
+        version: null
+        published: null
+        http_status: 200
+        size_bytes: 17598
+        note: >
+          Still served and still emitted by the live oEmbed endpoint's html
+          field, even though the marketing site has moved to v2. No deprecation
+          notice is published for v1.
+    modes:
+      - id: inline-without-overlay
+        name: Inline embed, no overlay
+        description: Demo auto-starts as soon as the host page loads.
+        example: https://jsfiddle.net/storylane/h6gdwf4s/
+      - id: inline-with-overlay
+        name: Inline embed with overlay
+        description: >
+          Shows a demo preview with a clickable CTA that loads the demo. Includes
+          a blur slider for the background.
+        example: https://jsfiddle.net/storylane/akprf9z3/
+      - id: popup
+        name: Popup embed
+        description: >
+          A CTA button on the host page opens the demo full-screen in a popup.
+        example: https://jsfiddle.net/storylane/w64kq9uh/
+    options:
+      - name: LLM-Friendly toggle
+        description: >
+          Share > Embed toggle that makes demo content readable by LLMs and search
+          engines so the product tour can be indexed organically. An explicit
+          agent/crawler-visibility control on an otherwise iframe-opaque surface —
+          notable, because most interactive-demo embeds are invisible to crawlers
+          by construction.
+      - name: Auto-scale Demo
+        description: >
+          Settings toggle that adjusts HTML demos for mobile viewport rendering.
+      - name: Mobile View
+        description: Prompts viewers on small screens to rotate the device.
+    events:
+      description: >
+        The embedded iframe emits window.postMessage analytics events to the host
+        page and accepts an inbound cookie-consent message.
+      catalog: asyncapi/storylane-webhooks.yml
+  - id: oembed
+    name: oEmbed provider endpoint
+    kind: hosted API
+    endpoint: https://api.storylane.io/oembed/meta?url=<demo-share-url>
+    spec: oEmbed 1.0
+    auth: none
+    verified: probed
+    http_status: 200
+    response_type: rich
+    returns:
+      - type
+      - version
+      - title
+      - provider_name
+      - provider_url
+      - thumbnail_url
+      - html
+      - width
+      - height
+    consumers_documented:
+      - iFramely
+      - Embedly
+    note: >
+      Publicly callable with no credential. This is the only Storylane REST
+      endpoint an unauthenticated client can use, and the only one whose exact
+      path Storylane publishes.
+  - id: repx-chat
+    name: RepX Chat widget
+    kind: script
+    loaders:
+      - name: repx.js
+        url: https://js.storylane.io/js/v1/repx.js
+        registry: cdn
+        version: null
+        published: null
+        http_status: 200
+        size_bytes: 12646
+        note: >
+          Loader for the RepX conversational sales agent, referenced from
+          www.storylane.io. Unpinned CDN path, so no version is knowable.
+    docs: https://docs.storylane.io/repx/getting-started
+    related_docs: https://docs.storylane.io/repx/javascript-functions
+    note: >
+      RepX is sold as a separate product line with its own pricing tiers; it
+      exposes documented JavaScript functions on the host page.
+platforms_supported:
+  description: >
+    Platforms Storylane documents as working with its embed out of the box.
+  list:
+    - Webflow
+    - WordPress
+    - Notion
+    - Jira Confluence
+    - GitBook
+    - Readme
+    - Miro
+    - Guru
+    - Trainual
+    - Zendesk
+    - HubSpot (dedicated website-embed integration)
+gaps:
+  - No npm-published embed package; distribution is CDN script tag only.
+  - Every loader URL is major-version-pinned but release-unpinned, so integrators cannot lock a build or audit a change.
+  - No Subresource Integrity hash is published for any loader.
+  - No web-component or React/Vue wrapper is published.

@@ -1,0 +1,305 @@
+# Storylane Docs
+
+## Interactive Demos
+
+- [Welcome to Storylane](https://docs.storylane.io/welcome-to-storylane.md): New to interactive demos? This is a great place to start
+- [Quick Start Guide](https://docs.storylane.io/quick-start-guide.md): Ready to build your first demo? Create a Storylane account and follow these steps to get started!
+- [Best Practices](https://docs.storylane.io/best-practices.md): A few tips and tricks to make the most of your demos
+- [Recording Screenshot Demos](https://docs.storylane.io/recording-demos/recording-screenshot-demos.md): The fastest way to create interactive demos
+- [Recording HTML Demos](https://docs.storylane.io/recording-demos/recording-html-demos.md): Create responsive, editable interactive demos. HTML demos are available Growth plan onwards.
+- [Other Recording Options](https://docs.storylane.io/recording-demos/other-recording-options.md): Whether you're working outside your browser, showcasing desktop/mobile apps, or turning Figma mockups into clickable experiences, Storylane supports multiple recording options
+- [Editing Screenshot Screens](https://docs.storylane.io/editing-demos/editing-screenshot-screens.md): Storylane supports a range of editing features for screenshot demos. Here's the rundown.
+- [Editing HTML Screens](https://docs.storylane.io/editing-demos/editing-html-screens.md): Storylane's HTML demos enable powerful code-free editing capabilities, made even better with AI
+- [AI HTML Editor](https://docs.storylane.io/editing-demos/editing-html-screens/ai-html-editor.md): See how Storylane's AI HTML Editor lets you update your demo screens directly — just describe what you want, and the AI handles the edits.
+- [Adding and Editing Guided Steps](https://docs.storylane.io/editing-demos/adding-and-editing-guided-steps.md): Guides form the foundation of interactive demos and product tours.
+- [Adding and Editing Video Steps](https://docs.storylane.io/editing-demos/adding-and-editing-guided-steps/adding-and-editing-video-steps.md): 👉  Video steps can only be added to existing screenshot demos, allowing users to add and edit video steps right in Storylane.
+- [AI Demo Creation](https://docs.storylane.io/editing-demos/ai-demo-creation.md): A suite of AI features to dramatically simplify the demo creation process
+- [Personalizing Demos](https://docs.storylane.io/editing-demos/personalizing-demos.md): Personalize your demos' on-screen content, guides, and links with dynamic tokens
+- [Chapters & Convert CTA](https://docs.storylane.io/editing-demos/chapters-and-convert-cta.md): Check out how to set up chaptered menus and a convert CTA buttons
+- [Demo Settings](https://docs.storylane.io/editing-demos/demo-settings.md): Settings that apply to your published demo
+- [Review and commenting](https://docs.storylane.io/editing-demos/review-and-commenting.md): Invite others and collaborate on demos by leaving feedback directly within the editor
+- [Overview](https://docs.storylane.io/sharing-demos/overview.md): Share Storylane demos across email, sales tools, websites, and social channels.
+- [Share via Link](https://docs.storylane.io/sharing-demos/share-via-link.md): When sharing a Storylane demo link, you have a few options to choose from:
+- [Embed on Website or Product](https://docs.storylane.io/sharing-demos/embed-on-website-or-product.md): Embedding interactive demos are a proven way to engage website visitors and drive conversions.
+- [Share via Email](https://docs.storylane.io/sharing-demos/share-via-email.md): Easily share interactive demos in your email campaigns or outbound messages using your preferred email tools.
+- [Use in CRM & Sales Tools](https://docs.storylane.io/sharing-demos/use-in-crm-and-sales-tools.md)
+- [Share on Social](https://docs.storylane.io/sharing-demos/share-on-social.md): Share demos as links or GIF previews across social platforms.
+- [Socials & Email Campaigns](https://docs.storylane.io/sharing-demos/socials-and-email-campaigns.md): Share Storylane demos across your marketing channels
+- [Present Mode](https://docs.storylane.io/sharing-demos/present-mode.md): Prepare conference-ready demos with Storylane
+- [Conference Mode](https://docs.storylane.io/sharing-demos/conference-mode.md): Prepare conference-ready demos with Storylane
+- [Exports & Downloads](https://docs.storylane.io/sharing-demos/exports-and-downloads.md)
+- [Demo Protection & Security](https://docs.storylane.io/sharing-demos/demo-protection-and-security.md): Storylane supports multiple ways to secure your demo and demo access
+- [Share Link](https://docs.storylane.io/sharing-demos/share-link.md)
+- [Share via Extension](https://docs.storylane.io/sharing-demos/share-link/share-via-extension.md): Share your demo directly from the Storylane Chrome extension — quick and seamless.
+- [Share via Gmail Plugin](https://docs.storylane.io/sharing-demos/share-link/share-via-gmail-plugin.md)
+- [Share via HubSpot](https://docs.storylane.io/sharing-demos/share-link/share-via-hubspot.md): Track and share Storylane demos directly from your HubSpot account
+- [Share via Salesforce](https://docs.storylane.io/sharing-demos/share-link/share-via-salesforce.md): Effortlessly access and share Storylane demos directly from your Salesforce account
+- [Sandbox Configuration](https://docs.storylane.io/sandbox-demo/sandbox-configuration.md): Responsive demo environments for reliable product experience
+- [Present Mode](https://docs.storylane.io/sandbox-demo/sandbox-configuration/present-mode.md): Run polished live demos without showing guides content.
+- [Capture Leads](https://docs.storylane.io/analytics-and-performance/capture-leads.md): Identify leads and track analytics from your interactive demo
+- [Lead Attribution](https://docs.storylane.io/analytics-and-performance/lead-attribution.md): It's incredibly easy to track a visitor's journey from anonymous viewers to engaged leads on Storylane.
+- [Tracking and Analyzing](https://docs.storylane.io/analytics-and-performance/tracking-and-analyzing.md): Storylane offers powerful insights into your demo performance.
+- [Understanding Intent](https://docs.storylane.io/analytics-and-performance/tracking-and-analyzing/understanding-intent.md): Intent helps you quickly understand how seriously buyers are engaging with your demos.
+- [Account-Level Insights](https://docs.storylane.io/analytics-and-performance/account-level-insights.md)
+- [Viewer Data Enrichment](https://docs.storylane.io/analytics-and-performance/viewer-data-enrichment.md)
+- [A/B Testing](https://docs.storylane.io/analytics-and-performance/a-b-testing.md): Compare two versions of a demo and understand which one performs better
+- [Deal intelligence](https://docs.storylane.io/analytics-and-performance/deal-intelligence.md): See exactly which demos influence your deals in HubSpot or Salesforce
+- [Integrations & Data Flow](https://docs.storylane.io/integrations/integrations-and-data-flow.md): Connect Storylane to your CRM, sales tools, and analytics stack to send demos and track engagement.
+- [HubSpot](https://docs.storylane.io/integrations/integrations-and-data-flow/hubspot.md)
+- [HubSpot Lead Forms](https://docs.storylane.io/integrations/integrations-and-data-flow/hubspot/hubspot-lead-forms.md)
+- [HubSpot Integration Features](https://docs.storylane.io/integrations/integrations-and-data-flow/hubspot/hubspot-integration-features.md)
+- [HubSpot Website Embeds](https://docs.storylane.io/integrations/integrations-and-data-flow/hubspot/hubspot-website-embeds.md)
+- [Storylane App for HubSpot](https://docs.storylane.io/integrations/integrations-and-data-flow/hubspot/storylane-app-for-hubspot.md): Effortlessly integrate Storylane into HubSpot and streamline your demo-sharing workflow with these simple steps.
+- [Matching HubSpot Tokens to Storylane Tokens](https://docs.storylane.io/integrations/integrations-and-data-flow/hubspot/matching-hubspot-tokens-to-storylane-tokens.md): Dynamically populate contact details like email, first name, or company name into a Storylane demo URL by integrating with HubSpot tokens. These values are seamlessly pulled from your HubSpot CRM.
+- [How to Build Workflows with Demo Engagement Data](https://docs.storylane.io/integrations/integrations-and-data-flow/hubspot/how-to-build-workflows-with-demo-engagement-data.md)
+- [Marketo](https://docs.storylane.io/integrations/integrations-and-data-flow/marketo.md): Storylane integrates seamlessly with Marketo, enabling you to:
+- [Marketo Lead Forms](https://docs.storylane.io/integrations/integrations-and-data-flow/marketo/marketo-lead-forms.md)
+- [Pardot](https://docs.storylane.io/integrations/integrations-and-data-flow/pardot.md): Storylane integrates seamlessly with Pardot, enabling you to:
+- [Pardot Form](https://docs.storylane.io/integrations/integrations-and-data-flow/pardot/pardot-form.md)
+- [Salesforce](https://docs.storylane.io/integrations/integrations-and-data-flow/salesforce.md): Create new leads and send demo analytics to SFDC
+- [Storylane App for Salesforce](https://docs.storylane.io/integrations/integrations-and-data-flow/salesforce/storylane-app-for-salesforce.md): Effortlessly access and share Storylane demos directly from Salesforce.
+- [MCP](https://docs.storylane.io/integrations/integrations-and-data-flow/mcp.md): Storylane MCP connects Claude, ChatGPT, Microsoft Copilot to your demo library. Build, personalize, analyze, and publish demos without leaving your AI client.
+- [Slack](https://docs.storylane.io/integrations/integrations-and-data-flow/slack.md): Storylane’s Slack integration allows you to receive real-time alerts when users engage with your demos or demo hubs. These alerts help your team follow up while interest is still fresh.
+- [FreshSales](https://docs.storylane.io/integrations/integrations-and-data-flow/freshsales.md)
+- [Dynamics 365](https://docs.storylane.io/integrations/integrations-and-data-flow/dynamics-365.md): Storylane integrates with Dynamics 365 to create new leads and send demo analytics
+- [Zapier](https://docs.storylane.io/integrations/integrations-and-data-flow/zapier.md): Send leads to 5000+ apps through Zapier
+- [Gong](https://docs.storylane.io/integrations/integrations-and-data-flow/gong.md): Embed interactive demo links directly in your Gong emails and templates
+- [Outreach](https://docs.storylane.io/integrations/integrations-and-data-flow/outreach.md): Embed interactive demo links directly in your Outreach emails with automatic lead tracking and engagement insights.
+- [Chili Piper](https://docs.storylane.io/integrations/integrations-and-data-flow/chili-piper.md): Embed live Chili Piper scheduling links directly into your interactive demos
+- [Calendly](https://docs.storylane.io/integrations/integrations-and-data-flow/calendly.md): Embed live Calendly scheduling links directly into your interactive demos
+- [Google Tag Manager](https://docs.storylane.io/integrations/integrations-and-data-flow/google-tag-manager.md): Integrate Google Tag Manager (GTM) with your Storylane demos - you can track user interactions, pass event data to platforms like Google Analytics, and improve demo attribution.
+- [Google Analytics](https://docs.storylane.io/integrations/integrations-and-data-flow/google-analytics.md): Integrate in a few clicks and send demo analytics to GA
+- [Gmail](https://docs.storylane.io/integrations/integrations-and-data-flow/gmail.md): Send demos as GIFs or links directly from Gmail
+- [Segment](https://docs.storylane.io/integrations/integrations-and-data-flow/segment.md): Send demo analytics to Segment
+- [Intercom](https://docs.storylane.io/integrations/integrations-and-data-flow/intercom.md): Integrate with Intercom to send captured leads and events
+- [Clearbit](https://docs.storylane.io/integrations/integrations-and-data-flow/clearbit.md): Enrich demo viewers data on Storylane with personal/company info from Clearbit.
+- [6Sense](https://docs.storylane.io/integrations/integrations-and-data-flow/6sense.md): Enrich demo viewers data on Storylane with personal/company info from 6Sense.
+- [SourceForge](https://docs.storylane.io/integrations/integrations-and-data-flow/sourceforge.md): Engage prospective buyers when they visit your SourceForge profile
+- [Seismic](https://docs.storylane.io/integrations/integrations-and-data-flow/seismic.md): Create and share interactive demos directly within Seismic
+- [G2](https://docs.storylane.io/integrations/integrations-and-data-flow/g2.md): Engage prospective buyers when they visit your G2 profile
+- [Webhooks](https://docs.storylane.io/integrations/integrations-and-data-flow/webhooks.md): Webhooks are available starting from the Starter plan.
+- [Cross-Frame Events](https://docs.storylane.io/integrations/integrations-and-data-flow/cross-frame-events.md): Send demo analytic events cross origin
+- [External API](https://docs.storylane.io/integrations/integrations-and-data-flow/external-api.md)
+- [Alerts](https://docs.storylane.io/account/alerts.md): Never miss a hot lead. Get notified instantly when prospects engage with your demos or demo hubs - right in Slack, email, or via webhook.
+- [User activity](https://docs.storylane.io/account/user-activity.md): Track how your team is using Storylane - and who’s driving results.
+- [Managing Demos](https://docs.storylane.io/account/managing-demos.md): Features to help you organize and reuse demos
+- [Managing Team](https://docs.storylane.io/account/managing-team.md): In this section, you'll learn how to efficiently manage your team and collaborate effectively on Storylane.io
+- [Branding](https://docs.storylane.io/account/branding.md): Customize demos to match your company brand's look and feel.
+- [Custom Theme](https://docs.storylane.io/account/branding/custom-theme.md): If you'd like to set up default colors for your demo, create themes for your account. This way, you can easily apply your chosen theme without having to adjust colors for every demo.
+- [Custom Domain](https://docs.storylane.io/account/branding/custom-domain.md): Share your demos in custom branded domain
+- [How to Switch Your Editor Theme](https://docs.storylane.io/tips-and-tricks/how-to-switch-your-editor-theme.md)
+- [How to create interactive demos that convert?](https://docs.storylane.io/tips-and-tricks/how-to-create-interactive-demos-that-convert.md): Learn how to design short, engaging, and story‑driven demos that boost engagement, increase CTA clicks, and capture more leads.
+- [How to Add/Embed a Storylane Demo in a Zendesk Article](https://docs.storylane.io/tips-and-tricks/how-to-add-embed-a-storylane-demo-in-a-zendesk-article.md)
+- [How do I send data to 6Sense?](https://docs.storylane.io/tips-and-tricks/how-do-i-send-data-to-6sense.md)
+- [How to record a video avatar?](https://docs.storylane.io/tips-and-tricks/how-to-record-a-video-avatar.md): Here is a set of do's and dont's and best practices on recording your video replica and getting your perfect video avatar.
+- [Is it possible to connect a LinkedIn tracking pixel to Storylane?](https://docs.storylane.io/tips-and-tricks/is-it-possible-to-connect-a-linkedin-tracking-pixel-to-storylane.md)
+- [How to edit the background of a screen with a pop-up?](https://docs.storylane.io/tips-and-tricks/how-to-edit-the-background-of-a-screen-with-a-pop-up.md)
+- [How to copy a chapter to a demo?](https://docs.storylane.io/tips-and-tricks/how-to-copy-a-chapter-to-a-demo.md)
+- [How to combine Desktop and Mobile captures?](https://docs.storylane.io/tips-and-tricks/how-to-combine-desktop-and-mobile-captures.md)
+- [Customizing and Tracking Demo URL Links](https://docs.storylane.io/tips-and-tricks/customizing-and-tracking-demo-url-links.md): Storylane allows you to create personalized and trackable demo experiences using various parameters in your demo links. Below is a guide to the available options:
+- [How to add pop-up message for non-clickable elements?](https://docs.storylane.io/tips-and-tricks/how-to-add-pop-up-message-for-non-clickable-elements.md)
+- [GDPR Compliance](https://docs.storylane.io/trust-and-security/gdpr-compliance.md)
+- [SSO](https://docs.storylane.io/trust-and-security/sso.md): Add Single-Sign-on for your account
+- [FAQs](https://docs.storylane.io/trust-and-security/faqs.md)
+- [If I Cancel My Subscription, What Happens To My Demos?](https://docs.storylane.io/trust-and-security/faqs/if-i-cancel-my-subscription-what-happens-to-my-demos.md)
+- [What accessibility standards do you support?](https://docs.storylane.io/trust-and-security/faqs/what-accessibility-standards-do-you-support.md)
+- [How to transfer ownership of your workspace?](https://docs.storylane.io/trust-and-security/faqs/how-to-transfer-ownership-of-your-workspace.md)
+- [Why is part of my demo cut off?](https://docs.storylane.io/trust-and-security/faqs/why-is-part-of-my-demo-cut-off.md)
+- [Do I need to update my cookie policy if I use Storylane?](https://docs.storylane.io/trust-and-security/faqs/do-i-need-to-update-my-cookie-policy-if-i-use-storylane.md)
+- [Managing Your Billing](https://docs.storylane.io/trust-and-security/faqs/managing-your-billing.md): Everything you need to stay in control of your Storylane plan, seats, and invoices — all without leaving the app.
+
+## Hubs
+
+- [Hubs Overview](https://docs.storylane.io/hubs-docs/hubs/hubs-overview.md): New to Hubs? Here's an overview to get started
+- [Hubs Configuration](https://docs.storylane.io/hubs-docs/hubs/hubs-configuration.md): Edit, style, and configure your Hub based on your needs
+- [Types Of Hubs](https://docs.storylane.io/hubs-docs/creating-hubs/types-of-hubs.md): When creating a new Hub, start by selecting the type that best fits your use case. This determines how prospects will navigate and interact with your content.
+- [Sectional Layouts](https://docs.storylane.io/hubs-docs/creating-hubs/sectional-layouts.md): After selecting your Hub type, choose how to organize content.
+- [Header & CTAs](https://docs.storylane.io/hubs-docs/creating-hubs/header-and-ctas.md): Customize key elements prospects see when landing on your Hub.
+- [Styling Hubs](https://docs.storylane.io/hubs-docs/creating-hubs/styling-hubs.md): Customize your Hub's visual appearance to match your brand.
+- [Adding Content To Hubs](https://docs.storylane.io/hubs-docs/creating-hubs/adding-content-to-hubs.md): The fun part. Add demos, videos, documents, and other materials to your Hubs.
+- [Lead Forms And Embeds](https://docs.storylane.io/hubs-docs/creating-hubs/lead-forms-and-embeds.md): Options configuration to make the most of your Hubs
+- [Personalizing Hubs](https://docs.storylane.io/hubs-docs/sharing-hubs/personalizing-hubs.md): Personalize Hubs with dynamic tokens that automatically swap prospect information.
+- [Interest Screens](https://docs.storylane.io/hubs-docs/sharing-hubs/interest-screens.md): Prospects rate topics from most to least importance — giving you intel for follow-ups.
+- [Sharing Hubs](https://docs.storylane.io/hubs-docs/sharing-hubs/sharing-hubs.md): Share Hubs straight from the Storylane app, browser extension, Gmail plugin, or CRM apps
+- [Hub Analytics](https://docs.storylane.io/hubs-docs/hub-analytics/hub-analytics.md): Understand how each of your Hubs is performing and how prospects are engaging.
+- [Integrations](https://docs.storylane.io/hubs-docs/integrations/integrations.md): Integrate Storylane with the rest of your GTM stack to stay on top of leads and intent signals
+- [HubSpot](https://docs.storylane.io/hubs-docs/integrations/integrations/hubspot.md)
+- [HubSpot Lead Forms](https://docs.storylane.io/hubs-docs/integrations/integrations/hubspot/hubspot-lead-forms.md)
+- [HubSpot Integration Features](https://docs.storylane.io/hubs-docs/integrations/integrations/hubspot/hubspot-integration-features.md)
+- [HubSpot Website Embeds](https://docs.storylane.io/hubs-docs/integrations/integrations/hubspot/hubspot-website-embeds.md)
+- [Storylane App for HubSpot](https://docs.storylane.io/hubs-docs/integrations/integrations/hubspot/storylane-app-for-hubspot.md): Effortlessly integrate Storylane into HubSpot and streamline your demo-sharing workflow with these simple steps.
+- [Matching HubSpot Tokens to Storylane Tokens](https://docs.storylane.io/hubs-docs/integrations/integrations/hubspot/matching-hubspot-tokens-to-storylane-tokens.md): Dynamically populate contact details like email, first name, or company name into a Storylane demo URL by integrating with HubSpot tokens. These values are seamlessly pulled from your HubSpot CRM.
+- [Marketo](https://docs.storylane.io/hubs-docs/integrations/integrations/marketo.md): Storylane integrates seamlessly with Marketo, enabling you to:
+- [Marketo Lead Forms](https://docs.storylane.io/hubs-docs/integrations/integrations/marketo/marketo-lead-forms.md)
+- [Pardot](https://docs.storylane.io/hubs-docs/integrations/integrations/pardot.md): Storylane integrates seamlessly with Pardot, enabling you to:
+- [Pardot Form](https://docs.storylane.io/hubs-docs/integrations/integrations/pardot/pardot-form.md)
+- [Salesforce](https://docs.storylane.io/hubs-docs/integrations/integrations/salesforce.md): Create new leads and send demo analytics to SFDC
+- [Storylane App for Salesforce](https://docs.storylane.io/hubs-docs/integrations/integrations/salesforce/storylane-app-for-salesforce.md): Effortlessly access and share Storylane demos directly from Salesforce.
+- [Slack](https://docs.storylane.io/hubs-docs/integrations/integrations/slack.md): Storylane offers a native Slack integration so your team gets notified when prospects view your demos. These alerts help your team follow up while interest is still fresh.
+- [FreshSales](https://docs.storylane.io/hubs-docs/integrations/integrations/freshsales.md)
+- [Dynamics 365](https://docs.storylane.io/hubs-docs/integrations/integrations/dynamics-365.md): Storylane integrates with Dynamics 365 to create new leads and send demo analytics
+- [Zapier](https://docs.storylane.io/hubs-docs/integrations/integrations/zapier.md): Send leads to 5000+ apps through Zapier
+- [Gong](https://docs.storylane.io/hubs-docs/integrations/integrations/gong.md): Embed interactive demo links directly in your Gong emails and templates
+- [Outreach](https://docs.storylane.io/hubs-docs/integrations/integrations/outreach.md): Embed interactive demo links directly in your Outreach emails with automatic lead tracking and engagement insights.
+- [Chili Piper](https://docs.storylane.io/hubs-docs/integrations/integrations/chili-piper.md): Embed live Chili Piper scheduling links directly into your interactive demos
+- [Calendly](https://docs.storylane.io/hubs-docs/integrations/integrations/calendly.md): Embed live Calendly scheduling links directly into your interactive demos
+- [Google Tag Manager](https://docs.storylane.io/hubs-docs/integrations/integrations/google-tag-manager.md): Integrate Google Tag Manager (GTM) with your Storylane demos - you can track user interactions, pass event data to platforms like Google Analytics, and improve demo attribution.
+- [Google Analytics](https://docs.storylane.io/hubs-docs/integrations/integrations/google-analytics.md): Integrate in a few clicks and send demo analytics to GA
+- [Gmail](https://docs.storylane.io/hubs-docs/integrations/integrations/gmail.md): Send demos as GIFs or links directly from Gmail
+- [Segment](https://docs.storylane.io/hubs-docs/integrations/integrations/segment.md): Send demo analytics to Segment
+- [Intercom](https://docs.storylane.io/hubs-docs/integrations/integrations/intercom.md): Integrate with Intercom to send captured leads and events
+- [Clearbit](https://docs.storylane.io/hubs-docs/integrations/integrations/clearbit.md): Enrich demo viewers data on Storylane with personal/company info from Clearbit.
+- [6Sense](https://docs.storylane.io/hubs-docs/integrations/integrations/6sense.md): Enrich demo viewers data on Storylane with personal/company info from 6Sense.
+- [SourceForge](https://docs.storylane.io/hubs-docs/integrations/integrations/sourceforge.md): Engage prospective buyers when they visit your SourceForge profile
+- [G2](https://docs.storylane.io/hubs-docs/integrations/integrations/g2.md): Engage prospective buyers when they visit your G2 profile
+- [Webhooks](https://docs.storylane.io/hubs-docs/integrations/integrations/webhooks.md): Webhooks are available starting from the Starter plan.
+- [Cross-Frame Events](https://docs.storylane.io/hubs-docs/integrations/integrations/cross-frame-events.md): Send demo analytic events cross origin
+- [External API](https://docs.storylane.io/hubs-docs/integrations/integrations/external-api.md)
+- [GDPR Compliance](https://docs.storylane.io/hubs-docs/trust-and-security/gdpr-compliance.md)
+- [SSO](https://docs.storylane.io/hubs-docs/trust-and-security/sso.md): Add Single-Sign-on for your account
+
+## RepX
+
+- [Overview](https://docs.storylane.io/repx/overview.md): Turn your website into your best sales rep
+- [Getting started](https://docs.storylane.io/repx/getting-started.md): Learn about how you can get started with RepX Chat by setting up an agent
+- [Training](https://docs.storylane.io/repx/training.md): Learn how you can train RepX based on your product and website content.
+- [Playbooks](https://docs.storylane.io/repx/playbooks.md): Learn how you can customize how RepX qualifies leads within different webpages.
+- [Conversation Signals](https://docs.storylane.io/repx/conversation-signals.md): Your sales team rarely needs the whole conversation. They need the two or three things that change how they run the next call - what the visitor is trying to solve, which product they were looking at,
+- [Integrations](https://docs.storylane.io/repx/integrations.md): Learn more about integrations supported by RepX
+- [HubSpot](https://docs.storylane.io/repx/integrations/hubspot.md)
+- [Slack](https://docs.storylane.io/repx/integrations/slack.md)
+- [Zapier](https://docs.storylane.io/repx/integrations/zapier.md): Not every tool your team runs on has a native RepX integration. Zapier covers the rest of them.
+- [Javascript functions](https://docs.storylane.io/repx/javascript-functions.md)
+
+## Playbooks & Customer Showcase
+
+- [Playbooks & Customer Showcase](https://docs.storylane.io/storylane-playbooks/playbooks-and-customer-showcase.md): Looking for inspiration? Explore our collection of playbooks and customer demos
+- [Storylane Playbooks Overview](https://docs.storylane.io/storylane-playbooks/storylane-playbooks-overview.md): Interactive demos are the future, helping you resonate better with the audience at every stage of the buying journey. Here are detailed guides to help you create killer demos depending on the use case
+- [Website Conversions](https://docs.storylane.io/storylane-playbooks/awareness-stage/website-conversions.md): Capturing the attention of website visitors is a challenge. Your website serves as the front door to your SaaS solution, and you need an irresistible hook to keep visitors engaged.
+- [Demo Gallery](https://docs.storylane.io/storylane-playbooks/awareness-stage/demo-gallery.md): Create a collection of focused demos that provide detailed walkthroughs of specific use cases, encouraging widespread sharing of the Demo Gallery.
+- [Email Campaigns](https://docs.storylane.io/storylane-playbooks/awareness-stage/email-campaigns.md): Engage your potential customers by bringing your product closer to them through email nurturing campaigns. Visual content in emails can increase the click-through rate by 42%.
+- [Blog Posts](https://docs.storylane.io/storylane-playbooks/awareness-stage/blog-posts.md): Integrating interactive demos within blog posts can significantly enhance the user experience, making the content more engaging and actionable.
+- [Conferences/Trade Shows](https://docs.storylane.io/storylane-playbooks/awareness-stage/conferences-trade-shows.md): Conferences and tradeshows are pivotal to showcase your product to a live audience. Utilize Storylane's interactive demos to significantly enhance, comprehension and engagement.
+- [Sales Leave-Behinds](https://docs.storylane.io/storylane-playbooks/decision-stage/sales-leave-behinds.md): By sharing a personalized demo with your champion swiftly, you can showcase the value of your product before competitors swoop in.
+- [Live Demos](https://docs.storylane.io/storylane-playbooks/decision-stage/live-demos.md): Engage prospects effectively during sales calls by creating personalized and insightful demos. Showcase your product in a compelling manner, tailored to each prospect's needs.
+- [Partner/Reseller Stack](https://docs.storylane.io/storylane-playbooks/decision-stage/partner-reseller-stack.md): Engaging partners in sales endeavors is a pivotal aspect of expanding market reach and driving revenue growth.
+- [Feature Explanations](https://docs.storylane.io/storylane-playbooks/retention-stage/feature-explanations.md): Feature explanations are crucial in ensuring that customers are fully utilizing the product and discovering its evolving capabilities. Interactive Demos serve as excellent tools for this purpose.
+- [Customer Support & Help Documentation](https://docs.storylane.io/storylane-playbooks/retention-stage/customer-support-and-help-documentation.md): Interactive demos eliminate the need for lengthy documentation, monotonous tutorials, and never-ending meetings, paving the way for a more engaging and efficient learning experience.
+
+## Product Updates
+
+- [July 28th 2026](https://docs.storylane.io/changelog/july-2026/july-28th-2026.md)
+- [July 15th 2026](https://docs.storylane.io/changelog/july-2026/july-15th-2026.md)
+- [June 26th 2026](https://docs.storylane.io/changelog/june-2026/june-26th-2026.md)
+- [June 12th 2026](https://docs.storylane.io/changelog/june-2026/june-12th-2026.md)
+- [May 26, 2026](https://docs.storylane.io/changelog/may-2026/may-26-2026.md)
+- [May 12, 2026](https://docs.storylane.io/changelog/may-2026/may-12-2026.md)
+- [April 30, 2026](https://docs.storylane.io/changelog/april-2026/april-30-2026.md)
+- [April 14, 2026](https://docs.storylane.io/changelog/april-2026/april-14-2026.md)
+- [March 21th, 2026](https://docs.storylane.io/changelog/march-2026/march-21th-2026.md)
+- [March 10th, 2026](https://docs.storylane.io/changelog/march-2026/march-10th-2026.md)
+- [February 28th, 2026](https://docs.storylane.io/changelog/february-2026/february-28th-2026.md)
+- [February 9th, 2026](https://docs.storylane.io/changelog/february-2026/february-9th-2026.md)
+- [January 26th, 2026](https://docs.storylane.io/changelog/january-2026/january-26th-2026.md)
+- [January 12th, 2026](https://docs.storylane.io/changelog/january-2026/january-12th-2026.md)
+- [December 27th, 2025](https://docs.storylane.io/changelog/december-2025/december-27th-2025.md)
+- [December 15th, 2025](https://docs.storylane.io/changelog/december-2025/december-15th-2025.md)
+- [November 28th, 2025](https://docs.storylane.io/changelog/november-2025/november-28th-2025.md)
+- [November 15th, 2025](https://docs.storylane.io/changelog/november-2025/november-15th-2025.md)
+- [October 27th, 2025](https://docs.storylane.io/changelog/october-2025/october-27th-2025.md)
+- [October 8th, 2025](https://docs.storylane.io/changelog/october-2025/october-8th-2025.md)
+- [September 19th, 2025](https://docs.storylane.io/changelog/september-2025/september-19th-2025.md)
+- [September 7th, 2025](https://docs.storylane.io/changelog/september-2025/september-7th-2025.md)
+- [August 28th, 2025](https://docs.storylane.io/changelog/august-2025/august-28th-2025.md)
+- [August 12th, 2025](https://docs.storylane.io/changelog/august-2025/august-12th-2025.md)
+- [July 25th, 2025](https://docs.storylane.io/changelog/july-2025/july-25th-2025.md)
+- [July 14th, 2025](https://docs.storylane.io/changelog/july-2025/july-14th-2025.md)
+- [June 27th, 2025](https://docs.storylane.io/changelog/june-2025/june-27th-2025.md)
+- [June 2nd, 2025](https://docs.storylane.io/changelog/june-2025/june-2nd-2025.md)
+- [May 26th, 2025](https://docs.storylane.io/changelog/may-2025/may-26th-2025.md)
+- [May 8th, 2025](https://docs.storylane.io/changelog/may-2025/may-8th-2025.md)
+- [April 30th, 2025](https://docs.storylane.io/changelog/april-2025/april-30th-2025.md)
+- [April 12th, 2025](https://docs.storylane.io/changelog/april-2025/april-12th-2025.md)
+- [March 25th, 2025](https://docs.storylane.io/changelog/march-2025/march-25th-2025.md)
+- [March 8th, 2025](https://docs.storylane.io/changelog/march-2025/march-8th-2025.md)
+- [February 26th, 2025](https://docs.storylane.io/changelog/february-2025/february-26th-2025.md)
+- [February 10th, 2025](https://docs.storylane.io/changelog/february-2025/february-10th-2025.md)
+- [January 30th, 2025](https://docs.storylane.io/changelog/january-2025/january-30th-2025.md)
+- [January 16th, 2025](https://docs.storylane.io/changelog/january-2025/january-16th-2025.md)
+- [December 29th, 2024](https://docs.storylane.io/changelog/december-2024/december-29th-2024.md)
+- [December 12th, 2024](https://docs.storylane.io/changelog/december-2024/december-12th-2024.md)
+- [November 28th, 2024](https://docs.storylane.io/changelog/november-2024/november-28th-2024.md)
+- [November 11th, 2024](https://docs.storylane.io/changelog/november-2024/november-11th-2024.md)
+- [October 28th, 2024](https://docs.storylane.io/changelog/october-2024/october-28th-2024.md)
+- [October 8th, 2024](https://docs.storylane.io/changelog/october-2024/october-8th-2024.md)
+- [September 25th, 2024](https://docs.storylane.io/changelog/september-2024/september-25th-2024.md)
+- [September 5th, 2024](https://docs.storylane.io/changelog/september-2024/september-5th-2024.md)
+- [August 16th, 2024](https://docs.storylane.io/changelog/august-2024/august-16th-2024.md)
+- [August 6th, 2024](https://docs.storylane.io/changelog/august-2024/august-6th-2024.md)
+- [July 26th, 2024](https://docs.storylane.io/changelog/july-2024/july-26th-2024.md)
+- [July 15th, 2024](https://docs.storylane.io/changelog/july-2024/july-15th-2024.md)
+- [June 28th, 2024](https://docs.storylane.io/changelog/june-2024/june-28th-2024.md)
+- [June 10th, 2024](https://docs.storylane.io/changelog/june-2024/june-10th-2024.md)
+- [May 21st, 2024](https://docs.storylane.io/changelog/may-2024/may-21st-2024.md)
+- [May 7th, 2024](https://docs.storylane.io/changelog/may-2024/may-7th-2024.md)
+- [April 29th, 2024](https://docs.storylane.io/changelog/updates-for-april-2024/april-29th-2024.md)
+- [April 10th, 2024](https://docs.storylane.io/changelog/updates-for-april-2024/april-10th-2024.md)
+- [March 27th, 2024](https://docs.storylane.io/changelog/updates-for-march-2024/march-27th-2024.md)
+- [March 8th, 2024](https://docs.storylane.io/changelog/updates-for-march-2024/march-8th-2024.md)
+- [February 20th, 2024](https://docs.storylane.io/changelog/updates-for-february-2024/february-20th-2024.md)
+- [February 8th, 2024](https://docs.storylane.io/changelog/updates-for-february-2024/february-8th-2024.md)
+- [January 25th, 2024](https://docs.storylane.io/changelog/updates-for-january-2024/january-25th-2024.md)
+- [January 10th, 2024](https://docs.storylane.io/changelog/updates-for-january-2024/january-10th-2024.md)
+- [December 29, 2023](https://docs.storylane.io/changelog/updates-for-december-2023/december-29-2023.md)
+- [December 12, 2023](https://docs.storylane.io/changelog/updates-for-december-2023/december-12-2023.md)
+- [November 30, 2023](https://docs.storylane.io/changelog/updates-for-november-2023/november-30-2023.md)
+- [November 10, 2023](https://docs.storylane.io/changelog/updates-for-november-2023/november-10-2023.md)
+- [October 30, 2023](https://docs.storylane.io/changelog/updates-for-october-2023/october-30-2023.md)
+- [October 11, 2023](https://docs.storylane.io/changelog/updates-for-october-2023/october-11-2023.md)
+- [September 29, 2023](https://docs.storylane.io/changelog/updates-for-september-2023/september-29-2023.md)
+- [September 11, 2023](https://docs.storylane.io/changelog/updates-for-september-2023/september-11-2023.md)
+- [August 21, 2023](https://docs.storylane.io/changelog/updates-for-august-2023/august-21-2023.md)
+- [August 8, 2023](https://docs.storylane.io/changelog/updates-for-august-2023/august-8-2023.md)
+- [July 11, 2023](https://docs.storylane.io/changelog/updates-for-july-2023/july-11-2023.md)
+- [July 5, 2023](https://docs.storylane.io/changelog/updates-for-july-2023/july-5-2023.md)
+- [June 27, 2023](https://docs.storylane.io/changelog/updates-for-june-2023/june-27-2023.md)
+- [June 14, 2023](https://docs.storylane.io/changelog/updates-for-june-2023/june-14-2023.md)
+- [May 29, 2023](https://docs.storylane.io/changelog/updates-for-may-2023/may-29-2023.md)
+- [May 16, 2023](https://docs.storylane.io/changelog/updates-for-may-2023/may-16-2023.md)
+- [April 18, 2023](https://docs.storylane.io/changelog/updates-for-april-2023/april-18-2023.md)
+- [April 12, 2023](https://docs.storylane.io/changelog/updates-for-april-2023/april-12-2023.md)
+- [March 29, 2023](https://docs.storylane.io/changelog/updates-for-march-2023/march-29-2023.md)
+- [March 14, 2023](https://docs.storylane.io/changelog/updates-for-march-2023/march-14-2023.md)
+- [March 6, 2023](https://docs.storylane.io/changelog/updates-for-march-2023/march-6-2023.md)
+- [March 1, 2023](https://docs.storylane.io/changelog/updates-for-march-2023/march-1-2023.md)
+- [February 21, 2023](https://docs.storylane.io/changelog/updates-for-february-2023/february-21-2023.md)
+- [February 7, 2023](https://docs.storylane.io/changelog/updates-for-february-2023/february-7-2023.md)
+- [January 12, 2023](https://docs.storylane.io/changelog/updates-for-january-2023/january-12-2023.md)
+- [January 9, 2023](https://docs.storylane.io/changelog/updates-for-january-2023/january-9-2023.md)
+- [December 20, 2022](https://docs.storylane.io/changelog/updates-for-december-2022/december-20-2022.md)
+- [December 13, 2022](https://docs.storylane.io/changelog/updates-for-december-2022/december-13-2022.md)
+- [November 30, 2022](https://docs.storylane.io/changelog/updates-for-november-2022/november-30-2022.md)
+- [November 22, 2022](https://docs.storylane.io/changelog/updates-for-november-2022/november-22-2022.md)
+- [November 14, 2022](https://docs.storylane.io/changelog/updates-for-november-2022/november-14-2022.md)
+- [November 7, 2022](https://docs.storylane.io/changelog/updates-for-november-2022/november-7-2022.md)
+- [October 31, 2022](https://docs.storylane.io/changelog/updates-in-october-2022/october-31-2022.md)
+- [October 24, 2022](https://docs.storylane.io/changelog/updates-in-october-2022/october-24-2022.md)
+- [October 17, 2022](https://docs.storylane.io/changelog/updates-in-october-2022/october-17-2022.md)
+- [October 10, 2022](https://docs.storylane.io/changelog/updates-in-october-2022/october-10-2022.md)
+- [October 3, 2022](https://docs.storylane.io/changelog/updates-in-october-2022/october-3-2022.md)
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information, you can query the documentation dynamically by asking a question.
+Perform an HTTP GET request on a page URL with the `ask` query parameter:
+```
+GET https://docs.storylane.io/welcome-to-storylane.md?ask=<question>
+```
+The question should be specific, self-contained, and written in natural language.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

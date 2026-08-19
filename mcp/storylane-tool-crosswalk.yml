@@ -1,0 +1,155 @@
+generated: '2026-08-13'
+method: derived
+source: >
+  mcp/storylane-mcp.yml (22 published MCP tools) bound against the five REST
+  operations documented at
+  https://docs.storylane.io/integrations/integrations-and-data-flow/external-api
+  and the public oEmbed endpoint documented at
+  https://docs.storylane.io/sharing-demos/embed-on-website-or-product
+description: >
+  Crosswalk between Storylane's remote MCP tool surface and its documented REST
+  surface. Storylane publishes NO OpenAPI, so the REST side of this map is not
+  operationIds from a spec — it is the five operations the External API
+  documentation names and shows sample responses for, plus one public oEmbed
+  endpoint. Identifiers below are therefore doc-derived labels, not spec
+  operationIds, and every row records that honestly.
+  THE HEADLINE: the agent surface is four times the documented REST surface.
+  17 of 22 MCP tools have no publicly documented REST equivalent — demo creation
+  from media, AI personalization, publishing, hubs, voices, analytics, leads and
+  accounts are all reachable by an agent and none of them are reachable by a
+  developer reading the public REST docs.
+surfaces:
+  openapi:
+    present: false
+    note: >
+      No OpenAPI or Swagger document was found on api.storylane.io,
+      identity.storylane.io, docs.storylane.io or www.storylane.io. The External
+      API's request paths and parameters are not published at all; the docs show
+      only sample response bodies and direct readers to a Postman collection
+      that renders client-side.
+  rest:
+    documented_at: https://docs.storylane.io/integrations/integrations-and-data-flow/external-api
+    base_url: https://api.storylane.io
+    gated: true
+    gate: >
+      Enterprise plan only. workspace_id and access_token are issued manually by
+      support@storylane.io; there is no self-serve key.
+    auth: Bearer token + workspace identifier
+  oembed:
+    endpoint: https://api.storylane.io/oembed/meta?url=<demo-url>
+    gated: false
+    verified: probed
+    http_status: 200
+    note: The one Storylane REST endpoint callable with no credentials at all.
+  graphql:
+    present: false
+  mcp:
+    endpoint: https://identity.storylane.io/mcp
+    gated: true
+    gate: OAuth; tools/list returns 401 Bearer realm="Storylane MCP"
+    tools: 22
+crosswalk:
+  - tool: list_demos
+    category: demo-library
+    rest:
+      - listPublishedDemos
+    binding: direct
+    confidence: high
+    note: >
+      REST operation "All Published Demos" returns {demos:[...]}. The MCP tool
+      additionally documents filtering and search, which the REST docs do not.
+  - tool: get_demo
+    category: demo-library
+    rest:
+      - getDemo
+    binding: direct
+    confidence: high
+    note: >
+      REST operation "Get Details on a Single Demo" returns {demo:{chapters,
+      steps, ...}}, matching the tool's documented "steps, hotspots, embed
+      settings, and share links".
+  - tool: list_links
+    category: links
+    rest:
+      - listDemoLinks
+    binding: direct
+    confidence: high
+    note: >
+      REST operation "List Demo Links" returns {links:[...]}. The MCP tool also
+      claims view counts, which the documented REST link object does not carry.
+  - tool: create_link
+    category: links
+    rest:
+      - createDemoLink
+    binding: direct
+    confidence: high
+    note: >
+      REST operation "Create a New Demo Link" returns {link:{...}} with passcode,
+      expires_at, email_required and whitelist_email_domains.
+  - tool: update_link
+    category: links
+    rest:
+      - updateDemoLink
+    binding: direct
+    confidence: high
+    note: REST operation "Update an Existing Demo Link" returns {link:{...}}.
+  - tool: get_demo_status
+    category: demo-library
+    rest:
+      - getDemo
+    binding: partial
+    confidence: low
+    note: >
+      The documented demo object carries a status field (published / amended)
+      and published_at, so publish state is readable via getDemo. Processing
+      status has no documented REST equivalent.
+mcp_only:
+  - tool: get_demo_analytics
+    reason: No public REST analytics endpoint is documented.
+  - tool: get_accounts
+    reason: Account reveal / firmographic data has no documented REST endpoint.
+  - tool: get_leads
+    reason: >
+      Leads are delivered by webhook and CRM integrations, not by any documented
+      REST read endpoint.
+  - tool: list_workspaces
+    reason: No documented REST workspace endpoint; REST takes workspace_id as input only.
+  - tool: switch_workspace
+    reason: >
+      Session-scoped MCP concept with no REST analogue — REST is stateless and
+      addresses one workspace per token.
+  - tool: convert_images_to_demo
+    reason: Demo authoring is not exposed by the documented REST API.
+  - tool: convert_video_to_demo
+    reason: Demo authoring is not exposed by the documented REST API.
+  - tool: add_step
+    reason: Step authoring is not exposed by the documented REST API.
+  - tool: personalise_demo
+    reason: AI personalization is not exposed by the documented REST API.
+  - tool: update_demo_settings
+    reason: Demo settings are read-only in the documented REST API.
+  - tool: publish_demo
+    reason: Publishing is not exposed by the documented REST API.
+  - tool: list_hubs
+    reason: Hubs have no documented REST endpoint.
+  - tool: get_hub
+    reason: Hubs have no documented REST endpoint.
+  - tool: list_voices
+    reason: AI voices have no documented REST endpoint.
+rest_only:
+  - operation: oembedMeta
+    surface: oembed
+    reason: >
+      GET https://api.storylane.io/oembed/meta?url= returns an oEmbed 1.0 rich
+      response with the embed HTML. Anonymous and public; no MCP tool exposes it.
+coverage:
+  mcp_tools: 22
+  mcp_tools_bound_to_rest: 6
+  mcp_tools_unbound: 16
+  documented_rest_operations: 6
+  rest_operations_bound_to_a_tool: 5
+  rest_operations_unbound: 1
+  bound_by_confidence:
+    high: 5
+    medium: 0
+    low: 1

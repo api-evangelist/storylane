@@ -1,0 +1,58 @@
+generated: '2026-08-13'
+method: generated
+source: >
+  Storylane's own published MCP tool catalog and documented AI workflows at
+  https://docs.storylane.io/integrations/integrations-and-data-flow/mcp, plus the
+  webhook reference at
+  https://docs.storylane.io/integrations/integrations-and-data-flow/webhooks
+description: >
+  Packaged Agent Skills for Storylane. Storylane publishes no OpenAPI, so these
+  skills are grounded in the provider's own published MCP tool names and its own
+  documented workflow sequences rather than in spec operationIds. Every tool name
+  referenced in every skill appears verbatim in Storylane's MCP documentation;
+  none is invented.
+grounding:
+  openapi: none published
+  mcp_tools: 22 published by name and description
+  mcp_endpoint: https://identity.storylane.io/mcp
+  mcp_gated: true
+  note: >
+    Input schemas are auth-gated and therefore not reproduced. Each skill tells
+    the agent to read parameter names from the live tool inputSchema after
+    authenticating, rather than guessing them.
+skills:
+  - name: storylane-audit-demo-library
+    file: storylane-audit-demo-library.md
+    surface: mcp
+    intent: Rank a workspace's published demos by engagement and recommend an action for each.
+    operations: [list_workspaces, switch_workspace, list_demos, get_demo_analytics]
+    scopes: [demos_read, analytics_read]
+    write: false
+  - name: storylane-personalized-demo-for-account
+    file: storylane-personalized-demo-for-account.md
+    surface: mcp
+    intent: Produce an account-specific demo variant and a trackable share link before a call.
+    operations: [list_demos, get_demo, personalise_demo, publish_demo, create_link]
+    scopes: [demos_read, demos_write]
+    write: true
+  - name: storylane-media-to-published-demo
+    file: storylane-media-to-published-demo.md
+    surface: mcp
+    intent: Convert screenshots or a recording into a finished, published interactive demo.
+    operations: [convert_images_to_demo, convert_video_to_demo, get_demo_status, add_step, list_voices, update_demo_settings, publish_demo]
+    scopes: [demos_read, demos_write]
+    write: true
+  - name: storylane-verify-webhook
+    file: storylane-verify-webhook.md
+    surface: webhooks
+    intent: Correctly verify and route an inbound Storylane demo-session webhook.
+    operations: [demo_viewed]
+    scopes: []
+    write: false
+cross_cutting_rules_embedded:
+  - No idempotency key exists on any Storylane surface; write retries can duplicate.
+  - No pagination fields exist in any published list response; completeness cannot be proven.
+  - No rate-limit response headers are emitted; pace loops conservatively.
+  - Every response carries an x-request-id UUID — capture it for support.
+  - Webhook signatures carry no timestamp, so dedupe on session id for replay safety.
+  - Every MCP tool is scoped to the active workspace; confirm it before writing.

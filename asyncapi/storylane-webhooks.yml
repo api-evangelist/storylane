@@ -1,0 +1,187 @@
+generated: '2026-08-13'
+method: searched
+source: >
+  https://docs.storylane.io/integrations/integrations-and-data-flow/webhooks and
+  https://docs.storylane.io/integrations/integrations-and-data-flow/cross-frame-events
+description: >
+  Storylane's event surface. There are two distinct channels and they are easy to
+  confuse: server-to-server outbound WEBHOOKS carrying completed demo sessions,
+  and in-browser CROSS-FRAME postMessage events emitted in real time by an
+  embedded demo iframe to its host page. Storylane publishes no AsyncAPI document
+  for either; this catalog is the machine-readable capture of what the docs
+  describe, with payload shapes taken verbatim from the published samples.
+asyncapi_published: false
+asyncapi_note: >
+  No AsyncAPI document was found on any Storylane host. This file is a webhook +
+  event catalog derived from the provider's own documentation, not a fabricated
+  AsyncAPI.
+channels:
+  - id: outbound-webhooks
+    name: Demo session webhooks
+    transport: HTTPS POST
+    direction: storylane-to-customer
+    docs: https://docs.storylane.io/integrations/integrations-and-data-flow/webhooks
+    plan_gate: Starter plan and above.
+    configuration: >
+      Settings > Integration > Webhook > Connect in the Storylane dashboard.
+      The customer supplies the receiving URL and chooses whether to receive all
+      demo sessions (known and unknown) or only sessions with a known lead or
+      account.
+    delivery_filter:
+      - all sessions (known and unknown)
+      - known lead or account only
+    security:
+      signature_header: x-storylane-signature
+      algorithm: HMAC-SHA256
+      encoding: base64
+      signed_material: raw, unparsed request body
+      secret_location: Settings > Integrations > Webhook (Webhook Verification Secret)
+      timestamp: not included
+      replay_protection: not documented
+      reference_implementations:
+        - Node.js / Express
+        - Ruby
+        - Python / Flask
+    events:
+      - name: demo_viewed
+        description: >
+          Emitted for a completed demo viewing session. The only event name
+          appearing in Storylane's published payload samples.
+        payload_fields:
+          - name: id
+            type: uuid
+            description: Session identifier.
+          - name: event
+            type: string
+            description: Event name; "demo_viewed" in both published samples.
+          - name: analytics_url
+            type: url
+            description: Deep link to the session in the Storylane audience analytics UI.
+          - name: host_url
+            type: url
+            description: The demo share URL the session ran against.
+          - name: link
+            type: url
+            description: The share link URL used.
+          - name: link_name
+            type: string
+            description: Name of the share link (for example "Default").
+          - name: name
+            type: string
+            description: Demo name.
+          - name: completion
+            type: integer
+            description: Percentage of the demo completed.
+          - name: time_spent
+            type: integer
+            description: Seconds spent in the demo.
+          - name: intent_level
+            type: string
+            description: Storylane-assigned intent scoring (for example "high").
+          - name: checklist_completed
+            type: boolean
+          - name: cta_opened
+            type: "string|null"
+          - name: viewed_at
+            type: datetime
+            description: ISO 8601 with offset.
+          - name: referers
+            type: array of url
+          - name: utm_params
+            type: object
+          - name: location
+            type: object
+            fields: [city, state, country]
+          - name: lead
+            type: "object|null"
+            description: >
+              null on an unknown session. When known, carries id, email,
+              first_name, last_name, client_source, client_tracking_id and
+              lead_source.
+          - name: buyer_reveal
+            type: object
+            description: >
+              Firmographic account reveal. Fields company_name, company_domain,
+              company_annual_revenue_range, company_employee_range and
+              confidence_score. Subject to the per-plan account reveal quota in
+              rate-limits/storylane-rate-limits.yml.
+        variants:
+          - known demo session (lead object populated)
+          - unknown demo session (lead is null, buyer_reveal may still resolve)
+  - id: cross-frame-events
+    name: Cross-frame demo analytics events
+    transport: window.postMessage (browser, iframe to parent)
+    direction: embedded-demo-to-host-page
+    docs: https://docs.storylane.io/integrations/integrations-and-data-flow/cross-frame-events
+    envelope:
+      message: storylane-demo-event
+      payload_key: payload
+      subscribe: window.addEventListener('message', handler)
+    use_cases:
+      - Launch a chat window based on user action inside the demo
+      - Display a demo-booking calendar based on user action
+      - Forward Storylane analytics into GA, Amplitude or Mixpanel
+    events:
+      - name: demo_open
+        description: Sent when the demo loads for the first time.
+        payload_fields:
+          - demo.id
+          - demo.url
+          - demo.name
+      - name: step_view
+        description: >
+          Sent when a guided step (hotspot, walkthrough or modal) is displayed.
+        payload_fields:
+          - demo.id
+          - demo.url
+          - demo.name
+          - step.id
+          - step.index
+          - flow.id
+          - flow.name
+      - name: demo_finished
+        description: Sent when the viewer completes all steps and flows.
+        payload_fields:
+          - demo.id
+          - demo.url
+          - demo.name
+      - name: lead_identify
+        description: Sent when a lead is captured through a form or URL parameters.
+        payload_fields:
+          - demo.id
+          - demo.url
+          - demo.name
+          - lead.email
+          - "lead.<custom>"
+      - name: open_external_url
+        description: Sent when the viewer clicks a CTA to an external URL.
+        payload_fields:
+          - demo.id
+          - demo.url
+          - demo.name
+          - step.id
+          - step.index
+  - id: consent-inbound
+    name: Cookie consent handshake
+    transport: window.postMessage (browser, parent to iframe)
+    direction: host-page-to-embedded-demo
+    docs: https://docs.storylane.io/trust-and-security/gdpr-compliance
+    events:
+      - name: storylane-cookie-consent
+        description: >
+          Posted by the host page to the demo iframe after the visitor accepts
+          cookies. Until it arrives (and with "Disable Tracking on Demos" enabled
+          in workspace config) Storylane suppresses analytics collection inside
+          embedded demos. This is the inbound half of the GDPR consent flow.
+related_surfaces:
+  alerts:
+    docs: https://docs.storylane.io/account/alerts
+    description: >
+      Real-time engagement alerts can be pushed to Slack, email or a webhook —
+      a third, notification-shaped delivery channel distinct from the session
+      webhook above.
+gaps:
+  - Only one webhook event name (demo_viewed) appears in the published samples; no full event catalog is published.
+  - No retry, backoff or delivery-guarantee policy is documented.
+  - No webhook delivery log or replay UI is documented.
+  - Signatures carry no timestamp, so replay is not defended against.

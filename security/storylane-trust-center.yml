@@ -1,0 +1,89 @@
+generated: '2026-08-13'
+method: searched
+probe: true
+source: https://trust.storylane.io/
+url: https://trust.storylane.io/
+description: >
+  Storylane operates a public Trust Center hosted on Sprinto at
+  trust.storylane.io, carrying a SOC 2 Type 2 report, a penetration test report,
+  an EU/UK Data Processing Agreement, a subprocessor list and a live control
+  register. It is the company's only structured security-and-compliance surface —
+  there is no security.txt and no vulnerability disclosure program anywhere on
+  the estate.
+platform: Sprinto
+verified: probed
+http_status: 200
+probe_note: >
+  IMPORTANT PROBE CAVEAT. trust.storylane.io sits behind CloudFront with a WAF
+  rule that returns HTTP 403 "Request blocked" to non-browser user agents. A
+  default curl request reports 403; the same URL returns 200 with a browser
+  User-Agent. Any automated check that does not set a browser UA will record this
+  live trust center as unavailable.
+certifications:
+  - name: SOC 2 Type 2
+    year: '2026'
+    document: Storylane Inc - SOC 2 Type 2 - Final Report.pdf
+    access: gated (request via the Trust Center, NDA flow)
+    evidence: SOC 2 framework badge and the named final report listed on trust.storylane.io
+  - name: GDPR
+    document: EU and UK Personal Data Processing Agreement 1.2.5.5.pdf
+    access: published on the Trust Center
+    evidence: >
+      "Storylane is GDPR compliant and our DPA is available in the Storylane
+      Trust Center" — https://docs.storylane.io/trust-and-security/gdpr-compliance
+documents_listed:
+  - name: Storylane Inc - SOC 2 Type 2 - Final Report.pdf
+    type: audit report
+  - name: Storylane INC Security-Scan-Report.pdf
+    type: penetration / security scan report
+  - name: EU and UK Personal Data Processing Agreement 1.2.5.5.pdf
+    type: data processing agreement
+  - name: Subprocessor list
+    type: subprocessors
+controls_published:
+  note: >
+    The Sprinto trust center exposes a live control register with per-control
+    pass state. Controls observed by name include:
+  observed:
+    - Vulnerability Remediation Process
+    - Centralized Management of Flaw Remediation Processes
+    - Application security practices (unauthorized access and modification)
+not_found:
+  - name: ISO 27001
+    checked: true
+    result: not listed
+  - name: HIPAA
+    checked: true
+    result: not listed
+  - name: PCI DSS
+    checked: true
+    result: not listed
+  - name: FedRAMP
+    checked: true
+    result: not listed
+related:
+  gdpr_docs: https://docs.storylane.io/trust-and-security/gdpr-compliance
+  sso_docs: https://docs.storylane.io/trust-and-security/sso
+  privacy_contact: privacy@storylane.io
+  domain_security: security/storylane-domain-security.yml
+gaps:
+  - No security.txt on any host (RFC 9116 absent).
+  - No vulnerability disclosure or bug bounty program (HackerOne 404, Bugcrowd 404, no disclosure page).
+  - No published security contact address; support@storylane.io and privacy@storylane.io are the only channels.
+  - The SOC 2 report is gated behind a request flow rather than summarized publicly.
+evidence:
+  - source: https://trust.storylane.io/
+    http_status: 200
+    user_agent: browser
+    keywords:
+      - SOC 2 Type 2
+      - SOC 2 - 2026
+      - GDPR
+      - Subprocessor
+      - Pentest
+      - DPA
+      - Vulnerability Remediation Process
+  - source: https://trust.storylane.io/
+    http_status: 403
+    user_agent: default (curl)
+    note: CloudFront WAF blocks non-browser agents

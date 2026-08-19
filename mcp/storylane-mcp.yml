@@ -1,0 +1,178 @@
+generated: '2026-08-13'
+method: searched
+source: https://docs.storylane.io/integrations/integrations-and-data-flow/mcp
+name: Storylane MCP
+description: >
+  Storylane operates a first-party hosted (remote) Model Context Protocol server
+  that exposes the demo library, analytics, lead and link surface to MCP-capable
+  AI clients. The server is documented publicly, requires OAuth, and is reachable
+  today at a stable https endpoint — no local install step. It is materially wider
+  than Storylane's documented External REST API: 22 tools cover demo creation from
+  media, AI personalization, publishing, hubs, voices, analytics, leads and
+  accounts, where the public REST documentation covers only demos and links.
+status: published
+deployment:
+  mode: remote
+  endpoint: https://identity.storylane.io/mcp
+  auth: oauth
+  verified: probed
+  probe:
+    method: POST
+    body: '{"jsonrpc":"2.0","id":1,"method":"tools/list"}'
+    accept: application/json, text/event-stream
+    http_status: 401
+    www_authenticate: Bearer realm="Storylane MCP"
+    response_body: '{"error":"unauthorized","error_description":"Bearer token required"}'
+    date: '2026-08-13'
+    note: >
+      The endpoint is live and speaks the MCP HTTP transport, but tools/list is
+      auth-gated, so the live inputSchema for each tool could not be introspected
+      anonymously. The tool list below is the provider's own published catalog
+      (names and descriptions verbatim from the MCP documentation page); input
+      schemas require an authenticated tools/list call.
+oauth:
+  issuer: https://identity.storylane.io
+  metadata: https://identity.storylane.io/.well-known/oauth-authorization-server
+  spec: RFC 8414
+  dynamic_client_registration: true
+  registration_endpoint: https://identity.storylane.io/oauth/register
+  pkce: S256
+  grant_types:
+    - authorization_code
+    - client_credentials
+    - refresh_token
+  scopes:
+    - mcp
+    - demos_read
+    - demos_write
+    - analytics_read
+  see_also: scopes/storylane-scopes.yml
+clients_supported:
+  - name: Claude
+    mechanism: custom connector
+    note: >
+      Personal accounts can always add a custom connector; on company accounts
+      only account admins can add one.
+  - name: ChatGPT
+    mechanism: custom connector (OAuth)
+    note: >
+      Not available on free accounts. Write actions require Developer Mode, in
+      beta for Business and Enterprise plans; read-only tools work on all plans.
+  - name: Microsoft Copilot
+    mechanism: MCP-compatible client
+    note: Named in the docs index entry for the MCP page.
+availability:
+  plan_gate_docs: "MCP is available on Growth plans and above (MCP documentation page)"
+  plan_gate_pricing_page: "Storylane MCP is listed as a Starter-plan feature on the pricing page"
+  discrepancy: >
+    The MCP documentation says Growth and above; the public pricing page lists
+    Storylane MCP under the Starter tier. Recorded as observed on 2026-08-13 —
+    the two provider-published surfaces disagree and neither was assumed correct.
+  workspace_scoped: true
+  workspace_note: >
+    Every tool is scoped to the authenticated user's active workspace. Agents
+    cannot reach another workspace; switch_workspace changes the active one.
+tool_count: 22
+tools:
+  - name: get_demo_analytics
+    category: analytics
+    description: >
+      Get views, unique visitors, session duration, CTA clicks, click-through
+      rate, and completion rate for a demo.
+  - name: get_accounts
+    category: analytics
+    description: >
+      List companies that engaged with demos, including firmographic and
+      engagement data.
+  - name: get_leads
+    category: analytics
+    description: >
+      Get leads captured through demo gating forms and their source demos.
+  - name: list_workspaces
+    category: demo-library
+    description: List workspaces available to the authenticated user.
+  - name: switch_workspace
+    category: demo-library
+    description: Change the active workspace for the current session.
+  - name: list_demos
+    category: demo-library
+    description: >
+      List demos in the active workspace. Supports filtering and search.
+  - name: get_demo
+    category: demo-library
+    description: Get a demo's steps, hotspots, embed settings, and share links.
+  - name: get_demo_status
+    category: demo-library
+    description: Get a demo's publish and processing status.
+  - name: convert_images_to_demo
+    category: demo-creation
+    description: Create an interactive demo from uploaded images or screenshots.
+  - name: convert_video_to_demo
+    category: demo-creation
+    description: Create an interactive demo from a screen recording or video.
+  - name: add_step
+    category: demo-creation
+    description: Add a text, hotspot, or tooltip step to an existing demo.
+  - name: personalise_demo
+    category: demo-creation
+    description: >
+      Create an AI-personalized demo variant for a company, persona, or context.
+  - name: update_demo_settings
+    category: demo-creation
+    description: >
+      Update a demo's title, description, branding, gating, or embed settings.
+  - name: publish_demo
+    category: demo-creation
+    description: Publish a draft or updated demo.
+  - name: list_hubs
+    category: hubs
+    description: List Demo Hubs in the active workspace.
+  - name: get_hub
+    category: hubs
+    description: Get a hub's demos, ordering, branding, and share URL.
+  - name: list_links
+    category: links
+    description: >
+      List share links, tracking variables, creation dates, and view counts.
+  - name: create_link
+    category: links
+    description: Create a trackable demo link with custom variables.
+  - name: update_link
+    category: links
+    description: Update an existing link's variables, expiry, or access settings.
+  - name: list_voices
+    category: voices
+    description: >
+      List available AI voices, languages, voice IDs, and preview URLs.
+documented_workflows:
+  - name: Create a launch demo from media
+    audience: product marketing
+    tools: [convert_images_to_demo, convert_video_to_demo, get_demo_status, update_demo_settings, publish_demo]
+  - name: Audit your demo library
+    audience: product marketing
+    tools: [list_demos, get_demo_analytics]
+  - name: Prepare a personalized demo before a call
+    audience: sales / account executives
+    tools: [list_demos, get_demo, personalise_demo, publish_demo, create_link]
+  - name: Prioritize follow-ups from engagement
+    audience: sales / account executives
+    tools: [get_leads, get_accounts]
+  - name: Convert a screen recording into a demo
+    audience: sales engineers
+    tools: [convert_video_to_demo, add_step, list_voices, publish_demo, create_link]
+  - name: Plan an enterprise deal hub
+    audience: sales engineers
+    tools: [list_demos, get_demo, list_hubs, get_hub, personalise_demo]
+  - name: Refresh stale onboarding demos
+    audience: customer success
+    tools: [list_demos, get_demo_analytics]
+  - name: Identify customer expansion signals
+    audience: customer success
+    tools: [get_accounts, get_demo_analytics]
+  - name: Send a personalized demo when a deal reaches Demo stage
+    audience: revops / marketing operations
+    tools: [list_demos, personalise_demo, publish_demo, create_link]
+known_gaps:
+  - Hub creation and editing are documented as "coming soon"; only list_hubs and get_hub exist today.
+  - Input schemas are not published anywhere; they require an authenticated tools/list call.
+  - No local-stdio package is published on npm or PyPI — this is a remote-only server.

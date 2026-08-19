@@ -1,0 +1,149 @@
+generated: '2026-08-13'
+method: probed
+source: live GET probes of every Storylane host named in apis.yml plus the MCP and docs hosts
+description: >
+  Well-known discovery probe across every Storylane host. One real document was
+  served: RFC 8414 OAuth 2.0 Authorization Server Metadata, returned identically
+  from identity.storylane.io (the MCP host and OAuth issuer) and api.storylane.io.
+  No security.txt, no OpenID Connect discovery document, no api-catalog, no
+  ai-plugin.json and no A2A agent card were found on any host.
+hosts:
+  - host: https://identity.storylane.io
+    note: OAuth issuer and remote MCP endpoint host
+    documents:
+      - path: /.well-known/oauth-authorization-server
+        status: 200
+        content_type: application/json
+        file: storylane-oauth-authorization-server.json
+        spec: RFC 8414
+        real_document: true
+      - path: /.well-known/oauth-protected-resource
+        status: 404
+        real_document: false
+      - path: /.well-known/openid-configuration
+        status: 404
+        real_document: false
+      - path: /.well-known/security.txt
+        status: 404
+        real_document: false
+      - path: /.well-known/api-catalog
+        status: 404
+        real_document: false
+      - path: /.well-known/ai-plugin.json
+        status: 404
+        real_document: false
+      - path: /.well-known/agent-card.json
+        status: 404
+        real_document: false
+      - path: /.well-known/agent.json
+        status: 404
+        real_document: false
+  - host: https://api.storylane.io
+    note: External REST API host; serves the same RFC 8414 metadata document as the issuer
+    documents:
+      - path: /.well-known/oauth-authorization-server
+        status: 200
+        content_type: application/json
+        spec: RFC 8414
+        real_document: true
+        note: >
+          Byte-identical to the document served by identity.storylane.io; issuer
+          field is https://identity.storylane.io. Saved once, not duplicated.
+      - path: /.well-known/oauth-protected-resource
+        status: 404
+        real_document: false
+      - path: /.well-known/openid-configuration
+        status: 404
+        real_document: false
+      - path: /.well-known/security.txt
+        status: 404
+        real_document: false
+      - path: /.well-known/api-catalog
+        status: 404
+        real_document: false
+      - path: /.well-known/ai-plugin.json
+        status: 404
+        real_document: false
+      - path: /.well-known/agent-card.json
+        status: 404
+        real_document: false
+      - path: /.well-known/agent.json
+        status: 404
+        real_document: false
+  - host: https://www.storylane.io
+    note: Webflow-hosted marketing site; returns a short "Invalid .well-known request" 404 body
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+        real_document: false
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+        real_document: false
+      - path: /.well-known/openid-configuration
+        status: 404
+        real_document: false
+      - path: /.well-known/api-catalog
+        status: 404
+        real_document: false
+      - path: /.well-known/ai-plugin.json
+        status: 404
+        real_document: false
+      - path: /.well-known/agent-card.json
+        status: 404
+        real_document: false
+      - path: /.well-known/agent.json
+        status: 404
+        real_document: false
+  - host: https://docs.storylane.io
+    note: GitBook-hosted documentation; every /.well-known/ path returns the 404 HTML shell
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+        real_document: false
+      - path: /.well-known/agent-card.json
+        status: 404
+        real_document: false
+      - path: /.well-known/agent.json
+        status: 404
+        real_document: false
+  - host: https://app.storylane.io
+    note: >
+      FALSE POSITIVE HOST. The application SPA answers HTTP 200 with the same
+      1,033-byte HTML dashboard shell for EVERY /.well-known/* path, including
+      paths that cannot exist. None of these 200s is a document; all are recorded
+      as misses and none earns a discovery pointer.
+    documents:
+      - path: /.well-known/security.txt
+        status: 200
+        content_type: text/html
+        real_document: false
+        note: SPA catch-all HTML shell, not a document
+      - path: /.well-known/oauth-authorization-server
+        status: 200
+        content_type: text/html
+        real_document: false
+        note: SPA catch-all HTML shell, not a document
+      - path: /.well-known/openid-configuration
+        status: 200
+        content_type: text/html
+        real_document: false
+        note: SPA catch-all HTML shell, not a document
+      - path: /.well-known/agent-card.json
+        status: 200
+        content_type: text/html
+        real_document: false
+        note: SPA catch-all HTML shell, not an A2A agent card
+      - path: /.well-known/agent.json
+        status: 200
+        content_type: text/html
+        real_document: false
+        note: SPA catch-all HTML shell, not an A2A agent card
+summary:
+  paths_probed: 40
+  real_documents_found: 1
+  security_txt: false
+  openid_configuration: false
+  oauth_authorization_server: true
+  api_catalog: false
+  ai_plugin: false
+  agent_card: false

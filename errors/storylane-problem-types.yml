@@ -1,0 +1,90 @@
+generated: '2026-08-13'
+method: probed
+source: >
+  Live responses observed from https://identity.storylane.io/mcp,
+  https://api.storylane.io and https://www.storylane.io on 2026-08-13, plus the
+  webhook verification examples at
+  https://docs.storylane.io/integrations/integrations-and-data-flow/webhooks.
+description: >
+  Storylane publishes no error reference and no OpenAPI, so there are no 4xx/5xx
+  response schemas to derive from. This catalog records only errors this pipeline
+  actually observed on the wire, plus the two status codes Storylane's own
+  webhook reference implementations tell integrators to return. It is deliberately
+  short: an honest, small, observed catalog rather than a large invented one.
+format: oauth2-error
+format_note: >
+  The authenticated surface uses the RFC 6749 section 5.2 error envelope
+  {"error","error_description"}. It is NOT RFC 9457 — no application/problem+json
+  response was seen on any host, and no type/title/detail/instance members exist.
+error_catalog_published: false
+problem_types:
+  - id: unauthorized
+    status: 401
+    surface: mcp
+    endpoint: https://identity.storylane.io/mcp
+    content_type: application/json
+    envelope: '{"error":"unauthorized","error_description":"Bearer token required"}'
+    www_authenticate: Bearer realm="Storylane MCP"
+    verified: probed
+    meaning: >
+      The MCP request carried no OAuth bearer token. Returned for every JSON-RPC
+      method including tools/list, so even capability discovery is gated.
+    remediation: >
+      Complete the OAuth authorization code flow against
+      https://identity.storylane.io (PKCE S256), or register a client at
+      https://identity.storylane.io/oauth/register first, then resend with an
+      Authorization: Bearer header.
+  - id: not_found
+    status: 404
+    surface: rest
+    endpoint: any unrouted path on api.storylane.io or identity.storylane.io
+    content_type: text/html
+    envelope: Rails default HTML error page ("The page you were looking for doesn't exist (404)")
+    verified: probed
+    meaning: An unrecognized path on the API host.
+    remediation: >
+      Confirm the path. Note the trap for JSON clients: a wrong path returns HTML,
+      not JSON, so parse defensively and check content-type before decoding.
+    note: >
+      This is also why a naive spec probe can be misread — /openapi.json,
+      /swagger.json and /api-docs all return this same HTML 404 on
+      api.storylane.io.
+  - id: well_known_not_found
+    status: 404
+    surface: well-known
+    endpoint: /.well-known/* on www.storylane.io
+    content_type: text/html
+    envelope: '<p>Invalid .well-known request</p>'
+    verified: probed
+    meaning: The Webflow-hosted marketing site serves no well-known documents.
+  - id: cloudfront_request_blocked
+    status: 403
+    surface: trust-center
+    endpoint: https://trust.storylane.io/
+    content_type: text/html
+    envelope: CloudFront "403 ERROR - The request could not be satisfied. Request blocked."
+    verified: probed
+    meaning: >
+      The Sprinto-hosted Trust Center is fronted by CloudFront with a WAF rule
+      that blocks non-browser user agents. The page returns 200 with a normal
+      browser User-Agent.
+    remediation: Send a browser User-Agent; the content is public.
+    note: >
+      Recorded because it is a classic false negative — a naive probe would
+      report the Trust Center as unavailable when it is in fact live and carries
+      the SOC 2 Type 2 report.
+integrator_side_responses:
+  description: >
+    Status codes Storylane's own published webhook receiver examples return. These
+    are what the customer's endpoint sends back to Storylane, not what Storylane
+    sends.
+  codes:
+    - status: 200
+      meaning: Signature verified; webhook accepted.
+    - status: 401
+      meaning: x-storylane-signature did not match the HMAC-SHA256 of the raw body.
+gaps:
+  - No error reference page exists in the Storylane documentation.
+  - No error codes, no error taxonomy and no machine-readable error schema are published for the External REST API.
+  - Rate-limit exhaustion behavior (status code, Retry-After) is undocumented and could not be observed.
+  - Validation error shapes for the MCP write tools are unknown; they require an authenticated session to observe.

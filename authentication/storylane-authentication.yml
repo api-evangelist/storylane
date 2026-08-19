@@ -1,0 +1,151 @@
+generated: '2026-08-13'
+method: searched
+source: >
+  https://docs.storylane.io/integrations/integrations-and-data-flow/external-api,
+  https://docs.storylane.io/integrations/integrations-and-data-flow/mcp,
+  https://docs.storylane.io/integrations/integrations-and-data-flow/webhooks,
+  https://docs.storylane.io/trust-and-security/sso, and live probes of
+  https://identity.storylane.io/.well-known/oauth-authorization-server
+description: >
+  Storylane runs three distinct authentication models across three distinct
+  surfaces, and they do not share credentials. The remote MCP server uses full
+  OAuth 2.0 with dynamic client registration and PKCE. The External REST API uses
+  a manually issued, non-recoverable Bearer token paired with a workspace
+  identifier. Webhooks are unauthenticated inbound POSTs verified by an
+  HMAC-SHA256 signature header. Workspace login itself is SAML/OIDC SSO brokered
+  through WorkOS, with SCIM provisioning.
+schemes:
+  - id: mcp_oauth2
+    surface: Storylane MCP (https://identity.storylane.io/mcp)
+    type: oauth2
+    verified: probed
+    http_status: 401
+    www_authenticate: Bearer realm="Storylane MCP"
+    issuer: https://identity.storylane.io
+    metadata_document: https://identity.storylane.io/.well-known/oauth-authorization-server
+    metadata_spec: RFC 8414
+    authorization_endpoint: https://identity.storylane.io/oauth/authorize
+    token_endpoint: https://identity.storylane.io/oauth/token
+    registration_endpoint: https://identity.storylane.io/oauth/register
+    dynamic_client_registration: true
+    dynamic_client_registration_spec: RFC 7591
+    pkce: true
+    code_challenge_methods_supported:
+      - S256
+    response_types_supported:
+      - code
+    grant_types_supported:
+      - authorization_code
+      - client_credentials
+      - refresh_token
+    token_endpoint_auth_methods_supported:
+      - none
+      - client_secret_post
+    scopes:
+      - mcp
+      - demos_read
+      - demos_write
+      - analytics_read
+    scopes_detail: scopes/storylane-scopes.yml
+    self_serve: true
+    note: >
+      Public-client friendly: token_endpoint_auth_methods_supported includes
+      "none" and PKCE S256 is offered, which is exactly the shape an MCP desktop
+      client needs. Combined with an open registration_endpoint, an MCP client
+      can register and authorize without any human at Storylane touching it —
+      the opposite of how the REST API is provisioned.
+  - id: external_api_bearer
+    surface: Storylane External REST API (https://api.storylane.io)
+    type: http
+    scheme: bearer
+    in: header
+    header: Authorization
+    format: "Authorization: Bearer <access_token>"
+    additional_credential:
+      name: workspace_id
+      description: Unique identifier for the customer workspace, issued alongside the token.
+    self_serve: false
+    provisioning: >
+      Manual. Customers email support@storylane.io to request a workspace_id and
+      access_token; credentials are issued only after approval.
+    plan_gate: Enterprise plan only.
+    recoverable: false
+    recovery_note: >
+      Storylane states it does not store the access_token server-side and cannot
+      re-issue or retrieve a lost one — the customer must store it securely or
+      request a new credential.
+    rotation_documented: false
+    expiry_documented: false
+    scopes: none
+  - id: webhook_hmac
+    surface: Storylane outbound webhooks (customer-hosted receiver)
+    type: signature
+    direction: inbound-to-customer
+    header: x-storylane-signature
+    algorithm: HMAC-SHA256
+    encoding: base64
+    signed_payload: raw request body (unparsed)
+    secret_name: Webhook Verification Secret
+    secret_location: Storylane dashboard, Settings > Integrations > Webhook
+    timestamp_in_signature: false
+    replay_protection_documented: false
+    note: >
+      Storylane publishes verified reference implementations in Node.js/Express,
+      Ruby and Python/Flask, and its Ruby and Python examples use constant-time
+      comparison (Rack::Utils.secure_compare, hmac.compare_digest). The Node
+      example uses a plain === comparison, which is timing-unsafe — worth flagging
+      to any integrator copying it verbatim.
+  - id: workspace_sso
+    surface: Storylane application login (https://app.storylane.io)
+    type: openIdConnect / saml
+    broker: WorkOS
+    protocols:
+      - SAML 2.0
+      - OpenID Connect
+      - Google OAuth
+      - Microsoft OAuth
+    identity_providers_documented:
+      - Okta SAML
+      - OneLogin SAML
+      - Auth0
+      - Azure AD SAML
+      - Google SAML
+      - Microsoft AD FS SAML
+      - ADP OpenID Connect
+      - Generic OpenID Connect
+      - CAS SAML
+      - ClassLink
+      - Cloudflare SAML
+      - CyberArk SAML
+      - Duo SAML
+      - Generic SAML
+      - JumpCloud SAML
+      - Keycloak SAML
+      - miniOrange SAML
+      - Oracle SAML
+      - PingFederate SAML
+      - PingOne SAML
+      - Salesforce SAML
+      - SimpleSAMLphp
+      - VMware SAML
+    plan_gate: Premium plan and above (Single Sign-on is listed on Premium).
+    provisioning:
+      scim: true
+      scim_spec: SCIM 2.0
+      scim_note: >
+        SCIM automated user provisioning is supported but must be enabled by
+        Storylane support; it is not self-serve in the dashboard.
+  - id: anonymous_oembed
+    surface: https://api.storylane.io/oembed/meta
+    type: none
+    verified: probed
+    http_status: 200
+    note: >
+      The oEmbed metadata endpoint accepts a public demo share URL and returns an
+      oEmbed 1.0 rich response with no credential of any kind. It is the only
+      Storylane API endpoint reachable anonymously.
+gaps:
+  - No /.well-known/openid-configuration is served on any Storylane host — only the OAuth 2.0 authorization server metadata.
+  - No /.well-known/oauth-protected-resource is served, so an MCP client cannot discover the resource server metadata from the endpoint itself; it must be given the issuer.
+  - The External REST API publishes no token rotation, expiry or revocation policy.
+  - No mutual TLS, no request signing and no IP allowlist are documented for the REST API.

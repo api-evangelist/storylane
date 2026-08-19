@@ -1,0 +1,286 @@
+generated: '2026-08-13'
+method: derived
+source: >
+  Sample response bodies published verbatim at
+  https://docs.storylane.io/integrations/integrations-and-data-flow/external-api,
+  the webhook payload samples at
+  https://docs.storylane.io/integrations/integrations-and-data-flow/webhooks,
+  the cross-frame event payloads at
+  https://docs.storylane.io/integrations/integrations-and-data-flow/cross-frame-events,
+  and the entity vocabulary of the 22 published MCP tools.
+description: >
+  Entity-relationship graph for the Storylane platform, derived from the JSON
+  Storylane actually publishes. There is no OpenAPI to read $refs from, so every
+  field and relationship below was read out of a real sample payload or named by
+  a documented MCP tool. Entities marked evidence:mcp-tool-only are known to
+  exist from the tool catalog but have no published payload shape.
+id_convention:
+  format: uuid v4
+  prefixes: none
+  note: >
+    Every identifier in every published sample is a bare UUID with no type
+    prefix, so an id is not self-describing — you cannot tell a demo id from a
+    link id from a lead id by looking at it. Share links use a separate,
+    shorter opaque slug (for example "jkzyb2hwbamc") in the URL path.
+entities:
+  - name: Demo
+    description: An interactive product walkthrough. The root object of the platform.
+    evidence: rest-sample
+    fields:
+      - {name: id, type: uuid}
+      - {name: name, type: string}
+      - {name: kind, type: string, enum_observed: [image, html]}
+      - {name: status, type: string, enum_observed: [published, amended]}
+      - {name: created_at, type: datetime}
+      - {name: edited_at, type: datetime}
+      - {name: published_at, type: datetime}
+      - {name: links_count, type: integer}
+      - {name: folder, type: "object|null"}
+      - {name: convert_cta, type: object, fields: [text, url, enabled]}
+      - {name: chapter_menu, type: "object|null"}
+      - {name: team_id, type: uuid, note: present on the list response}
+      - {name: team, type: object, note: expanded on the single-demo response}
+      - {name: user, type: object}
+      - {name: chapters, type: array, note: present only on the single-demo response}
+    relationships:
+      - {kind: has_many, target: Chapter, via: chapters}
+      - {kind: has_many, target: Link, via: links_count / listDemoLinks}
+      - {kind: belongs_to, target: Team, via: team_id}
+      - {kind: belongs_to, target: User, via: user.id}
+      - {kind: belongs_to, target: Folder, via: folder, optional: true}
+      - {kind: has_one, target: ConvertCTA, via: convert_cta, embedded: true}
+  - name: Chapter
+    description: A named grouping of steps inside a demo.
+    evidence: rest-sample
+    fields:
+      - {name: id, type: uuid}
+      - {name: name, type: string}
+      - {name: steps, type: array}
+    relationships:
+      - {kind: belongs_to, target: Demo, via: nesting}
+      - {kind: has_many, target: Step, via: steps}
+  - name: Step
+    description: A single guided interaction inside a chapter.
+    evidence: rest-sample
+    fields:
+      - {name: id, type: uuid}
+      - {name: kind, type: string, enum_observed: [popup, hotspot]}
+      - {name: content, type: html string}
+      - {name: cta, type: "string|null"}
+      - {name: audio_url, type: string}
+      - {name: secondary, type: "object|null"}
+      - {name: transcription, type: "string|null"}
+      - {name: index, type: integer, note: from cross-frame events; 1-based}
+    relationships:
+      - {kind: belongs_to, target: Chapter, via: nesting}
+  - name: Flow
+    description: >
+      A guided path through a demo. Appears in cross-frame step_view events as a
+      sibling of step; not present in any REST sample.
+    evidence: cross-frame-event
+    fields:
+      - {name: id, type: uuid}
+      - {name: name, type: string}
+    relationships:
+      - {kind: belongs_to, target: Demo, via: event payload}
+      - {kind: has_many, target: Step, via: event payload}
+  - name: Link
+    description: >
+      A shareable, individually configurable URL for a demo. The unit of
+      personalization and access control.
+    evidence: rest-sample
+    fields:
+      - {name: id, type: uuid}
+      - {name: name, type: string}
+      - {name: url, type: url, note: "served on a per-customer subdomain, e.g. https://<workspace>.storylane.io/share/<slug>"}
+      - {name: default_link, type: boolean}
+      - {name: passcode, type: "string|null"}
+      - {name: expires_at, type: "datetime|null"}
+      - {name: email_required, type: boolean}
+      - {name: email_confirmation_required, type: boolean}
+      - {name: recipient_email, type: "string|null"}
+      - {name: whitelist_email_domains, type: array of string}
+      - {name: tokens, type: array}
+      - {name: created_at, type: datetime}
+      - {name: updated_at, type: datetime}
+      - {name: user, type: object}
+    relationships:
+      - {kind: belongs_to, target: Demo, via: parent demo}
+      - {kind: belongs_to, target: User, via: user.id}
+      - {kind: has_many, target: Token, via: tokens}
+      - {kind: has_many, target: Session, via: link}
+  - name: Token
+    description: >
+      Secure access token attached to a link. Named in the External API benefits
+      list ("Token Management: Update links with secure access tokens") and
+      present as an array on every link sample, but no token object shape is
+      published.
+    evidence: rest-sample-empty-array
+    fields: []
+    relationships:
+      - {kind: belongs_to, target: Link, via: tokens}
+  - name: Session
+    description: >
+      One viewer's pass through a demo. The unit delivered by webhook; the thing
+      analytics are computed over.
+    evidence: webhook-sample
+    fields:
+      - {name: id, type: uuid}
+      - {name: event, type: string, enum_observed: [demo_viewed]}
+      - {name: analytics_url, type: url}
+      - {name: host_url, type: url}
+      - {name: link, type: url}
+      - {name: link_name, type: string}
+      - {name: name, type: string, note: demo name}
+      - {name: completion, type: integer, note: percent}
+      - {name: time_spent, type: integer, note: seconds}
+      - {name: intent_level, type: string, enum_observed: [high]}
+      - {name: checklist_completed, type: boolean}
+      - {name: cta_opened, type: "string|null"}
+      - {name: viewed_at, type: datetime}
+      - {name: referers, type: array of url}
+      - {name: utm_params, type: object}
+      - {name: location, type: object, fields: [city, state, country]}
+    relationships:
+      - {kind: belongs_to, target: Demo, via: host_url}
+      - {kind: belongs_to, target: Link, via: link}
+      - {kind: belongs_to, target: Lead, via: lead, optional: true}
+      - {kind: has_one, target: BuyerReveal, via: buyer_reveal, embedded: true}
+  - name: Lead
+    description: >
+      An identified viewer, captured through a gating form or URL parameters.
+      Null on an anonymous session.
+    evidence: webhook-sample
+    fields:
+      - {name: id, type: uuid}
+      - {name: email, type: string}
+      - {name: first_name, type: string}
+      - {name: last_name, type: string}
+      - {name: lead_source, type: string, enum_observed: [Nurtured]}
+      - {name: client_source, type: string, enum_observed: [none]}
+      - {name: client_tracking_id, type: "string|null"}
+    relationships:
+      - {kind: has_many, target: Session, via: lead}
+      - {kind: belongs_to, target: Demo, via: source demo (get_leads)}
+  - name: BuyerReveal
+    description: >
+      Firmographic account identification resolved from session traffic. Metered
+      per plan (250/mo Starter, 2,500/mo Growth, 10,000/mo Premium).
+    evidence: webhook-sample
+    fields:
+      - {name: company_name, type: string}
+      - {name: company_domain, type: string}
+      - {name: company_annual_revenue_range, type: string}
+      - {name: company_employee_range, type: string}
+      - {name: confidence_score, type: string, enum_observed: [low]}
+    relationships:
+      - {kind: belongs_to, target: Session, via: buyer_reveal}
+      - {kind: has_one, target: Account, via: company_domain}
+  - name: Account
+    description: >
+      A company that engaged with demos, with firmographic and engagement data.
+      Exposed by the get_accounts MCP tool; no payload shape is published.
+    evidence: mcp-tool-only
+    fields: []
+    relationships:
+      - {kind: has_many, target: Session, via: buyer reveal resolution}
+      - {kind: has_many, target: Lead, via: company domain}
+  - name: User
+    description: A Storylane account holder who authors and owns demos and links.
+    evidence: rest-sample
+    fields:
+      - {name: id, type: uuid}
+      - {name: email, type: string}
+      - {name: first_name, type: string}
+      - {name: last_name, type: string}
+    relationships:
+      - {kind: has_many, target: Demo, via: user}
+      - {kind: has_many, target: Link, via: user}
+      - {kind: belongs_to, target: Team, via: team membership}
+  - name: Team
+    description: >
+      A sub-grouping of users and demos inside a workspace. Multi-teams is a
+      Growth-plan feature.
+    evidence: rest-sample
+    fields:
+      - {name: id, type: uuid}
+      - {name: name, type: string}
+    relationships:
+      - {kind: has_many, target: Demo, via: team_id}
+      - {kind: has_many, target: User, via: membership}
+      - {kind: belongs_to, target: Workspace, via: containment}
+  - name: Workspace
+    description: >
+      The top-level tenant boundary. Every REST call takes a workspace_id; every
+      MCP tool is scoped to the session's active workspace.
+    evidence: mcp-tool-only
+    fields:
+      - {name: id, type: uuid, note: "workspace_id, issued with the API access token"}
+    relationships:
+      - {kind: has_many, target: Team, via: containment}
+      - {kind: has_many, target: Demo, via: containment}
+      - {kind: has_many, target: Hub, via: containment}
+  - name: Folder
+    description: >
+      Optional organizational container for demos. Present as a nullable field on
+      every demo sample; no folder object shape is published.
+    evidence: rest-sample-null
+    fields: []
+    relationships:
+      - {kind: has_many, target: Demo, via: folder}
+  - name: Hub
+    description: >
+      A Demo Hub / buyer deal room collecting demos, PDFs, videos and embeds.
+      Exposed read-only by list_hubs and get_hub; creation and editing are
+      documented as coming soon.
+    evidence: mcp-tool-only
+    fields:
+      - {name: demos, type: array, note: named in the get_hub description}
+      - {name: ordering, type: unknown}
+      - {name: branding, type: unknown}
+      - {name: share_url, type: url}
+    relationships:
+      - {kind: has_many, target: Demo, via: hub contents}
+      - {kind: belongs_to, target: Workspace, via: containment}
+  - name: Voice
+    description: >
+      An AI narration voice. Exposed by list_voices with language, voice id and
+      preview URL; no payload shape is published.
+    evidence: mcp-tool-only
+    fields:
+      - {name: voice_id, type: unknown}
+      - {name: language, type: unknown}
+      - {name: preview_url, type: url}
+    relationships:
+      - {kind: has_many, target: Step, via: audio_url narration}
+  - name: ConvertCTA
+    description: Call-to-action configuration embedded on a demo.
+    evidence: rest-sample
+    embedded: true
+    fields:
+      - {name: text, type: string}
+      - {name: url, type: url}
+      - {name: enabled, type: boolean}
+    relationships:
+      - {kind: belongs_to, target: Demo, via: convert_cta}
+graph_summary:
+  root: Demo
+  spine: Workspace > Team > Demo > Chapter > Step
+  distribution_spine: Demo > Link > Session > Lead / BuyerReveal
+  entity_count: 17
+  entities_with_published_shape: 12
+  entities_known_only_from_mcp_tool_names: 5
+observations:
+  - >
+    Analytics is the largest undocumented region of the model. Session and
+    BuyerReveal shapes are only knowable from the webhook samples; Account and
+    the analytics aggregate returned by get_demo_analytics have no published
+    shape at all.
+  - >
+    The Link entity carries the entire access-control model — passcode,
+    expires_at, email_required, email_confirmation_required and
+    whitelist_email_domains — which makes it, not Demo, the security-relevant
+    object in any integration.
+  - >
+    Every id is an unprefixed UUID, so the model is not self-describing on the
+    wire. Any integrator has to track type separately from identifier.

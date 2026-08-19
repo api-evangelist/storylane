@@ -1,0 +1,103 @@
+generated: '2026-08-13'
+method: searched
+source: >
+  Registry searches against registry.npmjs.org, pypi.org, rubygems.org and
+  crates.io on 2026-08-13; GitHub org github.com/storylane via the GitHub API;
+  and the Storylane docs SDK/embed pages.
+description: >
+  Storylane publishes NO first-party client library in any public package
+  registry. Its only distributed code artifacts are CDN-hosted browser loader
+  scripts, which have no registry metadata endpoint to query. The github.com/storylane
+  organization exists (created 2025-05-05) but has zero public repositories.
+official_sdk_count: 0
+packages:
+  - language: javascript
+    registry: cdn
+    name: storylane.js
+    url: https://js.storylane.io/js/v2/storylane.js
+    install: '<script src="https://js.storylane.io/js/v2/storylane.js"></script>'
+    official: true
+    version: null
+    published: null
+    note: >
+      CDN-distributed browser loader for the demo embed. There is no registry
+      metadata endpoint for this distribution and the URL pins only a major line
+      (/js/v2/), not a release — it floats to whatever Storylane currently
+      serves. Checked, nothing versioned to record. Probed 2026-08-13: HTTP 200,
+      17,012 bytes. A consumer cannot determine which build they are executing
+      either, and no Subresource Integrity hash is published.
+  - language: javascript
+    registry: cdn
+    name: storylane.js (v1)
+    url: https://js.storylane.io/js/v1/storylane.js
+    install: '<script src="https://js.storylane.io/js/v1/storylane.js"></script>'
+    official: true
+    version: null
+    published: null
+    note: >
+      Previous major line, still served (HTTP 200, 17,598 bytes on 2026-08-13)
+      and still emitted verbatim in the html field of the live oEmbed response,
+      even though www.storylane.io now loads v2. Unpinned, so no version is
+      knowable. No deprecation or sunset notice is published for v1.
+  - language: javascript
+    registry: cdn
+    name: repx.js
+    url: https://js.storylane.io/js/v1/repx.js
+    install: '<script src="https://js.storylane.io/js/v1/repx.js"></script>'
+    official: true
+    version: null
+    published: null
+    note: >
+      CDN loader for the RepX Chat conversational agent widget. Unpinned CDN
+      path, no registry metadata endpoint, HTTP 200 and 12,646 bytes on
+      2026-08-13.
+registries_checked:
+  - registry: npm
+    query: storylane
+    endpoint: https://registry.npmjs.org/-/v1/search?text=storylane
+    first_party_results: 0
+    note: >
+      Two unrelated results. "storylane-oboard" (1.0.0, published 2024-12-09) is
+      explicitly described as "Modified storylane version. For prevent inline
+      integration" — a third-party fork, not first-party, so official: false and
+      it is not listed above. "interactive-preview-skill" is unrelated.
+  - registry: pypi
+    query: storylane
+    endpoint: https://pypi.org/pypi/storylane/json
+    http_status: 404
+    first_party_results: 0
+  - registry: rubygems
+    query: storylane
+    endpoint: https://rubygems.org/api/v1/gems/storylane.json
+    http_status: 404
+    first_party_results: 0
+  - registry: crates.io
+    query: storylane
+    endpoint: https://crates.io/api/v1/crates/storylane
+    http_status: 403
+    first_party_results: 0
+    note: crates.io rejected the unauthenticated request; no Rust client is documented anywhere either.
+  - registry: github
+    query: github.com/storylane
+    endpoint: https://api.github.com/orgs/storylane
+    http_status: 200
+    public_repos: 0
+    created_at: '2025-05-05'
+    note: >
+      The organization is real and reserved but publishes nothing — no SDK, no
+      examples, no OpenAPI, no MCP server source.
+  - registry: maven-central
+    checked: false
+    note: No JVM client is referenced anywhere in the docs; not searched.
+  - registry: nuget
+    checked: false
+    note: No .NET client is referenced anywhere in the docs; not searched.
+  - registry: pkg.go.dev
+    checked: false
+    note: No Go client is referenced anywhere in the docs; not searched.
+finding: >
+  Storylane's integration story is deliberately no-code: an embed snippet, an
+  oEmbed URL, 30-plus native SaaS integrations, Zapier, webhooks, and now a
+  remote MCP server. There is no SDK because there is almost no addressable REST
+  API — the External API is Enterprise-gated with manually issued credentials.
+  The absence here is a strategy, not decay.

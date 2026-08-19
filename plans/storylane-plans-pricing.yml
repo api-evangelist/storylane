@@ -1,3 +1,6 @@
+generated: '2026-08-13'
+method: searched
+source: https://www.storylane.io/pricing
 specificationVersion: "0.1"
 aid: storylane:plans
 name: Storylane Plans and Pricing
@@ -42,6 +45,9 @@ plans:
     features:
       - Unlimited published demos
       - AI Suite Starter (20 min video avatar, translations)
+      - Storylane MCP (connect Claude and ChatGPT)
+      - Media to Demo
+      - Comments
       - Demo chapters
       - Account reveal (250/month)
       - HubSpot and Zapier integration
@@ -87,6 +93,7 @@ plans:
     features:
       - Salesforce integration
       - SSO
+      - Account reveal (10,000/month)
       - Whitelabel URLs
       - Presenter demos
       - Hubs and deal intelligence
@@ -170,3 +177,26 @@ plans:
       - Dedicated account team
       - Implementation and technical support
     apiAccess: false
+
+plan_count: 8
+verified: '2026-08-13'
+notes:
+  - >
+    Re-verified against https://www.storylane.io/pricing on 2026-08-13. Demo
+    Suite list prices are unchanged from the 2026-06-13 capture ($0 / $50 / $625
+    / $1500 monthly, with the annual Premium price showing as $1200).
+  - >
+    NEW SINCE THE LAST CAPTURE: "Storylane MCP - Connect Storylane to Claude and
+    ChatGPT to build, modify, and organize demos straight from your LLM" is now
+    listed as a STARTER tier feature, alongside Media to Demo and Comments.
+  - >
+    CONTRADICTION WORTH KNOWING. The MCP documentation page states "MCP is
+    available on Growth plans and above", while the pricing page lists Storylane
+    MCP under Starter. Two provider-published surfaces disagree; recorded as
+    observed, neither assumed correct.
+  - >
+    Premium account reveal has increased to 10,000/month (was not captured in the
+    prior round).
+  - >
+    External REST API access remains Enterprise-only, and credentials are issued
+    manually by support@storylane.io rather than self-serve.

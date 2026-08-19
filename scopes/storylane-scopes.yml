@@ -1,0 +1,86 @@
+generated: '2026-08-13'
+method: probed
+source: https://identity.storylane.io/.well-known/oauth-authorization-server
+docs: https://docs.storylane.io/integrations/integrations-and-data-flow/mcp
+description: >
+  OAuth 2.0 scopes Storylane publishes in its RFC 8414 Authorization Server
+  Metadata at identity.storylane.io. These are the scopes an MCP client requests
+  when a user authorizes Claude, ChatGPT or another MCP-capable client against
+  the Storylane MCP server. Scope descriptions below are derived from the
+  scope names and the documented MCP tool categories — Storylane does not
+  publish a per-scope permissions reference page, so no description here is
+  quoted from the provider.
+issuer: https://identity.storylane.io
+authorization_endpoint: https://identity.storylane.io/oauth/authorize
+token_endpoint: https://identity.storylane.io/oauth/token
+registration_endpoint: https://identity.storylane.io/oauth/register
+grant_types_supported:
+  - authorization_code
+  - client_credentials
+  - refresh_token
+code_challenge_methods_supported:
+  - S256
+token_endpoint_auth_methods_supported:
+  - none
+  - client_secret_post
+scope_count: 4
+scopes:
+  - name: mcp
+    description: >
+      Access to the Storylane MCP server transport itself. Published in the
+      authorization server metadata; required to reach
+      https://identity.storylane.io/mcp.
+    source: authorization-server-metadata
+  - name: demos_read
+    description: >
+      Read access to the demo library. Aligns with the documented read tools
+      list_workspaces, list_demos, get_demo, get_demo_status, list_hubs,
+      get_hub, list_links and list_voices.
+    source: authorization-server-metadata
+    tools_inferred:
+      - list_workspaces
+      - list_demos
+      - get_demo
+      - get_demo_status
+      - list_hubs
+      - get_hub
+      - list_links
+      - list_voices
+  - name: demos_write
+    description: >
+      Write access to demos and share links. Aligns with the documented write
+      tools convert_images_to_demo, convert_video_to_demo, add_step,
+      personalise_demo, update_demo_settings, publish_demo, create_link and
+      update_link. Storylane's ChatGPT setup notes that write actions require
+      Developer Mode, which is in beta for Business and Enterprise plans.
+    source: authorization-server-metadata
+    tools_inferred:
+      - convert_images_to_demo
+      - convert_video_to_demo
+      - add_step
+      - personalise_demo
+      - update_demo_settings
+      - publish_demo
+      - create_link
+      - update_link
+  - name: analytics_read
+    description: >
+      Read access to demo engagement analytics, captured leads and engaged
+      accounts. Aligns with get_demo_analytics, get_leads and get_accounts.
+    source: authorization-server-metadata
+    tools_inferred:
+      - get_demo_analytics
+      - get_leads
+      - get_accounts
+notes:
+  - >
+    Scope-to-tool mapping is INFERRED from scope names against the provider's
+    published tool catalog. Storylane publishes no scopes reference page, so the
+    mapping is a reasonable reading, not a provider statement.
+  - >
+    All scopes are additionally workspace-scoped at runtime: the docs state every
+    tool is limited to the authenticated user's active workspace and their own
+    permissions within it.
+  - >
+    The External REST API does NOT use these scopes. It authenticates with a
+    support-issued Bearer access_token plus a workspace_id and has no scope model.

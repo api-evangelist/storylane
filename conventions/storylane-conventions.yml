@@ -1,0 +1,165 @@
+generated: '2026-08-13'
+method: searched
+source: >
+  https://docs.storylane.io/integrations/integrations-and-data-flow/external-api,
+  https://docs.storylane.io/integrations/integrations-and-data-flow/mcp,
+  https://docs.storylane.io/integrations/integrations-and-data-flow/webhooks,
+  plus live response headers observed from https://api.storylane.io and
+  https://identity.storylane.io on 2026-08-13.
+description: >
+  Cross-cutting runtime semantics for Storylane's API surfaces. Storylane
+  publishes no OpenAPI and no conventions/standards page, so most of this is read
+  off real response headers and the published sample payloads. Where a convention
+  is simply not published, it is recorded as undocumented rather than guessed —
+  and there are more of those than there are documented ones.
+auth:
+  style: multiple, one per surface
+  detail: authentication/storylane-authentication.yml
+  summary:
+    - surface: MCP
+      style: OAuth 2.0 bearer, PKCE S256, dynamic client registration
+      self_serve: true
+    - surface: External REST API
+      style: 'Authorization: Bearer <access_token> header plus a workspace_id'
+      self_serve: false
+    - surface: oEmbed
+      style: none
+      self_serve: true
+    - surface: Webhooks (inbound to customer)
+      style: HMAC-SHA256 signature in x-storylane-signature
+idempotency:
+  supported: false
+  header: null
+  documented: false
+  note: >
+    No idempotency key is documented for any surface. This matters most on the
+    MCP write tools — create_link, convert_images_to_demo, convert_video_to_demo
+    and publish_demo are all naturally retried by agent clients, and a retry
+    after a timeout will create a duplicate. Handle at-least-once semantics on
+    your side.
+pagination:
+  supported: unknown
+  documented: false
+  style: null
+  request_params: []
+  response_fields: []
+  note: >
+    The published list responses are bare arrays under a single key
+    ({"demos":[...]}, {"links":[...]}) with no cursor, page, offset, limit,
+    total or next field, and no query parameters are documented. The MCP
+    list_demos tool documents "filtering and search" but publishes no parameter
+    names. A client cannot know whether a list response is complete.
+field_expansion:
+  supported: partial
+  documented: false
+  note: >
+    Not a general mechanism, but an observed shape difference: the list-demos
+    response carries a flat team_id, while the single-demo response replaces it
+    with an expanded team object and adds chapters. Expansion is fixed per
+    endpoint, not requestable.
+sparse_fieldsets:
+  supported: false
+  documented: false
+metadata:
+  custom_metadata_field: false
+  note: >
+    There is no generic metadata bag. Customer-defined data rides on links
+    instead — via personalization tokens, tracking variables and URL parameters
+    on the share URL — and surfaces back in the webhook as utm_params and
+    lead.client_tracking_id.
+request_tracing:
+  supported: true
+  method: response header
+  header: x-request-id
+  format: uuid v4
+  verified: probed
+  evidence: >
+    Observed on live responses from both https://api.storylane.io/oembed/meta
+    (x-request-id: 137ee195-f4c5-49bd-9835-7bc76d377c4f) and
+    https://identity.storylane.io/mcp (x-request-id:
+    497a9c3b-494f-4bf1-9c8f-286c459ea2f7) on 2026-08-13.
+  request_header_accepted: unknown
+  documented: false
+  note: >
+    Storylane emits a per-request correlation id on every response but never
+    documents it. It is nonetheless the single most useful value to capture when
+    opening a support ticket, since the REST API is support-provisioned anyway.
+    An x-runtime header carrying server processing time in seconds is also
+    emitted, which together with the Rails-shaped 404 page identifies the stack.
+versioning:
+  api_versioning: undocumented
+  url_versioning: false
+  header_versioning: false
+  note: >
+    No version segment appears in any documented Storylane API URL — not in the
+    oEmbed path (/oembed/meta), not in the MCP path (/mcp). The only versioned
+    thing Storylane ships is the browser embed loader (/js/v1/, /js/v2/), and
+    v1 is still served with no deprecation notice. There is no published policy
+    for breaking API changes.
+  changelog: changelog/storylane-changelog.yml
+error_envelope:
+  formats_observed:
+    - surface: OAuth / MCP
+      shape: '{"error": "<code>", "error_description": "<human message>"}'
+      spec: RFC 6749 section 5.2
+      verified: probed
+    - surface: api.storylane.io unknown path
+      shape: Rails default HTML 404 page
+      content_type: text/html
+      verified: probed
+      note: A JSON client receives HTML on a bad path — worth defensive parsing.
+  problem_json: false
+  rfc9457: false
+  catalog: errors/storylane-problem-types.yml
+rate_limit_signaling:
+  headers_observed: none
+  headers_documented: none
+  exhaustion_status: undocumented
+  retry_after: not observed
+  verified: probed
+  note: >
+    No X-RateLimit-*, RateLimit-* or Retry-After header appeared on any observed
+    response, and no numeric API rate limit is published. Product-level quotas
+    (account reveal, AI avatar minutes, RepX visitors) are published per plan and
+    are captured in rate-limits/storylane-rate-limits.yml, but they are billing
+    limits, not request limits.
+  detail: rate-limits/storylane-rate-limits.yml
+content_types:
+  request: application/json
+  response: application/json; charset=utf-8
+  mcp_accept: application/json, text/event-stream
+timestamps:
+  format: ISO 8601 with UTC offset
+  examples:
+    - '2026-01-22T11:26:14.732-12:00'
+    - '2026-05-20T03:27:29.246-07:00'
+  note: >
+    Offsets in the published samples are not normalized to Z and vary between
+    samples; parse the offset, do not assume UTC.
+identifiers:
+  format: bare uuid v4, no type prefix
+  share_slug: short opaque alphanumeric string in the share URL path
+  detail: data-model/storylane-data-model.yml
+security_headers_observed:
+  host: api.storylane.io
+  verified: probed
+  headers:
+    - x-frame-options: SAMEORIGIN
+    - x-content-type-options: nosniff
+    - x-xss-protection: "0"
+    - x-download-options: noopen
+    - x-permitted-cross-domain-policies: none
+    - referrer-policy: strict-origin-when-cross-origin
+    - strict-transport-security: present (see security/storylane-domain-security.yml)
+  note: A conventional, complete Rails security-header set on the API host.
+caching:
+  observed: 'cache-control: max-age=0, private, must-revalidate on api.storylane.io; no-cache on the MCP endpoint'
+  etag: present on the oEmbed response (weak ETag)
+  conditional_requests: not documented
+cross_links:
+  errors: errors/storylane-problem-types.yml
+  lifecycle: lifecycle/storylane-lifecycle.yml
+  authentication: authentication/storylane-authentication.yml
+  rate_limits: rate-limits/storylane-rate-limits.yml
+  scopes: scopes/storylane-scopes.yml
+  events: asyncapi/storylane-webhooks.yml
