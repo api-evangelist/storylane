@@ -44,6 +44,21 @@ tags:
   - Sales
   - MCP
   - Agent Tools
+  - Webhook
+  - Embeds
+  - oEmbed
+  - Demo Automation Platform
+tags_raw:
+  - Interactive Demos
+  - Product Walkthroughs
+  - Sales Enablement
+  - Marketing
+  - Demo Analytics
+  - Demo Automation
+  - Buyer Hub
+  - Sales
+  - MCP
+  - Agent Tools
   - Webhooks
   - Embeds
   - oEmbed
@@ -109,6 +124,12 @@ apis:
       - Agent Tools
       - Demos
       - Analytics
+      - Authentication
+    tags_raw:
+      - MCP
+      - Agent Tools
+      - Demos
+      - Analytics
       - OAuth
     properties:
       - type: MCPServer
@@ -167,6 +188,11 @@ apis:
     humanURL: https://docs.storylane.io/integrations/integrations-and-data-flow/webhooks
     baseURL: https://api.storylane.io
     tags:
+      - Webhook
+      - Event
+      - Analytics
+      - Lead Capture
+    tags_raw:
       - Webhooks
       - Events
       - Analytics
