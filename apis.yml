@@ -56,7 +56,7 @@ tags:
   - MCP
   - Agent Tools
   - Webhook
-  - Embeds
+  - Embed
   - oEmbed
   - Demo Automation Platform
 tags_raw:
@@ -172,6 +172,10 @@ apis:
     humanURL: https://docs.storylane.io/sharing-demos/embed-on-website-or-product
     baseURL: https://api.storylane.io
     tags:
+      - oEmbed
+      - Embed
+      - Public
+    tags_raw:
       - oEmbed
       - Embeds
       - Public
