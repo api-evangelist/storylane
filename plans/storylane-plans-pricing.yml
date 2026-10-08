@@ -200,3 +200,60 @@ notes:
   - >
     External REST API access remains Enterprise-only, and credentials are issued
     manually by support@storylane.io rather than self-serve.
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - free
+  - negotiated
+  - subscription
+  units: []
+  plans:
+  - name: Free
+    access: other
+    model: free
+    model_how: derived
+    units: []
+    periods: []
+  - name: Starter
+    access: other
+    model: subscription
+    model_how: derived
+    units: []
+    periods: []
+  - name: Growth
+    access: other
+    model: subscription
+    model_how: derived
+    units: []
+    periods: []
+  - name: Premium
+    access: other
+    model: subscription
+    model_how: derived
+    units: []
+    periods: []
+  - name: Enterprise
+    access: other
+    model: negotiated
+    model_how: derived
+    units: []
+    periods: []
+  - name: RepX Chat Growth
+    access: other
+    model: subscription
+    model_how: derived
+    units: []
+    periods: []
+  - name: RepX Chat Premium
+    access: other
+    model: subscription
+    model_how: derived
+    units: []
+    periods: []
+  - name: RepX Chat Enterprise
+    access: other
+    model: negotiated
+    model_how: derived
+    units: []
+    periods: []
