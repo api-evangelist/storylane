@@ -105,3 +105,16 @@
   relationship: platform-app
   status: not-a-workflow
   arazzo: null
+- slug: storylane-miro-own
+  label: Miro (own)
+  partner: miro
+  partner_name: Miro (own)
+  category: Miro app
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://miro.com/marketplace/storylane/
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
