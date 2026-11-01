@@ -1,4 +1,4 @@
-# Storylane (storylane)
+# Storylane
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,73 +64,141 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Storylane is an interactive demo platform that enables sales and marketing teams to build and share self-serve product walkthroughs, embedded demos, and demo galleries without engineering involvement. The platform provides an External REST API for Enterprise customers to programmatically manage published demos, generate secure shareable links with passcodes and expiration dates, and personalize demo experiences via email parameters. Storylane also supports webhooks, cross-frame events, and 30-plus native integrations with CRM, marketing automation, and analytics tools to connect demo engagement data with existing GTM workflows.
+Storylane is an interactive demo platform that enables sales and marketing teams to build and share self-serve product walkthroughs, embedded demos, and demo galleries without engineering involvement. The platform offers an External REST API for Enterprise customers to programmatically manage published demos, generate secure shareable links with passcodes and expiration dates, and personalize demo experiences via email parameters. Storylane also provides webhooks, cross-frame events, and 30-plus native integrations with CRM, marketing automation, and analytics tools to connect demo engagement data with existing GTM workflows. Its widest programmatic surface is not REST but a first-party hosted Model Context Protocol server at identity.storylane.io/mcp, secured with OAuth 2.0 dynamic client registration and PKCE, exposing 22 documented tools for demo creation from media, AI personalization, publishing, hubs, voices, analytics, leads and accounts to Claude, ChatGPT and other MCP clients.
 
-**APIs.json:** https://raw.githubusercontent.com/api-evangelist/storylane/refs/heads/main/apis.yml
+**Areas:** Interactive Demos · Product Walkthroughs · Sales Enablement · Marketing · Demo Analytics · Demo Automation · Buyer Hub · Sales · MCP · Agent Tools · Webhook · Embed
 
-**Naftiko:** https://github.com/naftiko/fleet?utm_source=api-evangelist&utm_medium=readme&utm_campaign=storylane-api-evangelist&utm_content=repo
+## Storylane on APIs.io
 
----
+Everything profiled for Storylane is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/storylane/](https://apis.io/providers/storylane/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (4)
 
-- Interactive Demos
-- Product Walkthroughs
-- Sales Enablement
-- Marketing
-- Demo Analytics
-- Demo Automation
-- Buyer Hub
-- Sales
+- [Storylane External API](https://apis.io/apis/storylane/storylane-external-api/) — The Storylane External API allows Enterprise plan customers to programmatically list published demos, retrieve demo details including chapters and steps,…
+- [Storylane MCP Server](https://apis.io/apis/storylane/storylane-mcp/) — Storylane's first-party hosted Model Context Protocol server, the widest programmatic surface the company operates. It exposes 22 documented tools covering…
+- [Storylane oEmbed API](https://apis.io/apis/storylane/storylane-oembed-api/) — A public, unauthenticated oEmbed 1.0 provider endpoint that resolves any Storylane demo share URL into a rich embed response containing the demo title,…
+- [Storylane Webhooks and Demo Events](https://apis.io/apis/storylane/storylane-webhooks/) — Storylane's event surface, in two channels. Outbound HTTPS webhooks deliver completed demo sessions to a customer endpoint, signed with a base64 HMAC-SHA256…
 
----
+### Published properties
 
-## APIs
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-| Name | Description | Docs |
-|------|-------------|------|
-| Storylane External API | REST API for Enterprise customers to list and retrieve demos, manage demo links, create secure shareable links, and personalize demo experiences. | [Documentation](https://docs.storylane.io/integrations/integrations-and-data-flow/external-api) |
+#### AsyncAPI (1)
 
----
+Event-driven and webhook contracts.
 
-## Plans, Rate Limits, and FinOps
+- [Storylane Webhooks](https://apis.io/asyncapis/storylane/storylane-webhooks/)
 
-| Resource | File |
-|----------|------|
-| Plans and Pricing | [plans/storylane-plans-pricing.yml](plans/storylane-plans-pricing.yml) |
-| Rate Limits | [rate-limits/storylane-rate-limits.yml](rate-limits/storylane-rate-limits.yml) |
-| FinOps | [finops/storylane-finops.yml](finops/storylane-finops.yml) |
+#### MCP servers (1)
 
-**Pricing tiers:** Free / Starter ($50/mo) / Growth ($625/mo) / Premium ($1,500/mo) / Enterprise (custom). API access is restricted to the Enterprise plan. Annual billing saves approximately 20 percent.
+Model Context Protocol servers that expose the API to agents.
 
----
+- [Storylane MCP](https://apis.io/servers/storylane/storylane-mcp/)
 
-## Timestamps
+#### JSON-LD (1)
 
-| Field | Value |
-|-------|-------|
-| Created | 2026-06-13 |
-| Modified | 2026-06-13 |
+Linked-data contexts for the provider's vocabulary.
 
----
+- [Storylane Context](https://apis.io/jsonld/storylane/storylane-context/)
 
-## Common Resources
+#### Security (3)
 
-| Type | URL |
-|------|-----|
-| Website | https://www.storylane.io |
-| Documentation | https://docs.storylane.io |
-| Blog | https://www.storylane.io/blog |
-| Pricing | https://www.storylane.io/pricing |
-| Status Page | https://status.storylane.io |
-| LinkedIn | https://www.linkedin.com/company/storylane-io |
-| X (Twitter) | https://x.com/storylaneio |
-| GitHub Org | https://github.com/storylane |
+Authentication, trust centre, and vulnerability disclosure.
 
----
+- [Storylane Authentication](https://apis.io/security/storylane/storylane-authentication/)
+- [Storylane Domain Security](https://apis.io/security/storylane/storylane-domain-security/)
+- [Storylane Trust Center](https://apis.io/security/storylane/storylane-trust-center/)
 
-## Maintainers
+#### OAuth scopes (1)
 
-| Name | Email |
-|------|-------|
-| Kin Lane | kin@apievangelist.com |
+The permissions the API asks for.
+
+- [Storylane Scopes](https://apis.io/scopes/storylane/storylane-scopes/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Storylane Plans Pricing](https://apis.io/plans/storylane/storylane-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Storylane Rate Limits](https://apis.io/rate-limits/storylane/storylane-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Storylane Finops](https://apis.io/finops/storylane/storylane-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.storylane.io)
+- [Documentation](https://docs.storylane.io)
+- [Getting started](https://docs.storylane.io/welcome-to-storylane)
+- [API reference](https://docs.storylane.io/integrations/integrations-and-data-flow/external-api)
+- [Pricing](https://www.storylane.io/pricing)
+- [Sign up](https://app.storylane.io/register)
+- [Blog](https://www.storylane.io/blog)
+- [Terms of service](https://www.storylane.io/terms-of-service)
+- [Privacy policy](https://www.storylane.io/privacy-policy)
+- [Status](https://status.storylane.io)
+
+## API Evangelist rating
+
+**Kin Score 63.8** — strong · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 80.0 |
+| Contract quality | 50.6 |
+| Contract governance | 18.2 |
+| Operational transparency | 76.3 |
+| Developer ergonomics | 51.8 |
+| Access clarity | 85.5 |
+
+**Agent readiness 42.1** — agent-ready (gated down from agent-native)
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | documented (partial credit) |
+| Auth Clarity | served (partial credit) |
+| Idempotency | — |
+| Error Semantics | documented (partial credit) |
+| OpenAPI Examples | — |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | yes |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | served (partial credit) |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | yes |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | na |
+
+**Regulatory alignment 39.2** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/storylane/](https://apis.io/providers/storylane/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Storylane: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/storylane/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
